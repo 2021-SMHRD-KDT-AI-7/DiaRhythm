@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/nightsky"
+    tools:context=".JoinActivity">
+
+    <EditText
+        android:id="@+id/et_id_j"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="#E6D5D5"
+        android:ems="10"
+        android:hint="아이디"
+        android:inputType="textPersonName"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#CAC1C1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline" />
+
+    <EditText
+        android:id="@+id/et_pw_j"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="#E6D5D5"
+        android:ems="10"
+        android:hint="비밀번호"
+        android:inputType="textPersonName"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#CAC1C1"
+        app:layout_constraintEnd_toEndOf="@+id/et_id_j"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/et_id_j"
+        app:layout_constraintTop_toBottomOf="@+id/et_id_j" />
+
+    <EditText
+        android:id="@+id/et_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="#E6D5D5"
+        android:ems="10"
+        android:hint="이름"
+        android:inputType="textPersonName"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#CAC1C1"
+        app:layout_constraintEnd_toEndOf="@+id/et_pw_j"
+        app:layout_constraintStart_toStartOf="@+id/et_pw_j"
+        app:layout_constraintTop_toBottomOf="@+id/et_pw_j" />
+
+    <EditText
+        android:id="@+id/et_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="#E6D5D5"
+        android:ems="10"
+        android:hint="주소"
+        android:inputType="textPersonName"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#CAC1C1"
+        app:layout_constraintEnd_toEndOf="@+id/et_name"
+        app:layout_constraintStart_toStartOf="@+id/et_name"
+        app:layout_constraintTop_toBottomOf="@+id/et_name" />
+
+    <EditText
+        android:id="@+id/et_pn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="#E6D5D5"
+        android:ems="10"
+        android:hint="연락처"
+        android:inputType="textPersonName"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#CAC1C1"
+        app:layout_constraintEnd_toEndOf="@+id/et_address"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/et_address"
+        app:layout_constraintTop_toBottomOf="@+id/et_address" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.08" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="222dp"
+        android:layout_height="63dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="@+id/rg_gender"
+        app:layout_constraintStart_toStartOf="@+id/rg_gender"
+        app:layout_constraintTop_toBottomOf="@+id/rg_gender">
+
+        <Button
+            android:id="@+id/btn_join_j"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:insetRight="6dp"
+            android:text="가입" />
+
+        <Button
+            android:id="@+id/btn_cancel"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:insetLeft="6dp"
+            android:text="취소" />
+    </LinearLayout>
+
+    <RadioGroup
+        android:id="@+id/rg_gender"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="@+id/et_pn"
+        app:layout_constraintStart_toStartOf="@+id/et_pn"
+        app:layout_constraintTop_toBottomOf="@+id/et_pn">
+
+        <RadioButton
+            android:id="@+id/rg_male"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="남"
+            android:textColor="#FFFFFF" />
+
+        <RadioButton
+            android:id="@+id/rg_female"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="여"
+            android:textColor="#FFFFFF" />
+    </RadioGroup>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
