@@ -10,6 +10,7 @@
         android:id="@+id/bnview"
         android:layout_width="0dp"
         android:layout_height="60dp"
+
         app:itemIconTint="@color/bncolor2"
         app:itemTextColor="@color/bncolor2"
         app:labelVisibilityMode="labeled"
@@ -30,12 +31,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.527">
+
         <fragment
             android:id="@+id/frameLayout"
             android:name="com.example.projecttest1.Fragment1"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            />
+            android:layout_height="match_parent" />
 
     </FrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
