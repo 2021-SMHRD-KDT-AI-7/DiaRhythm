@@ -8,11 +8,15 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class LoginActivity extends AppCompatActivity {
 
     EditText et_id,et_pw;
     Button btn_login, btn_join;
+    String result;
+    String result_rep;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -30,19 +34,30 @@ public class LoginActivity extends AppCompatActivity {
         btn_login.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 try {
-                    String result;
+                    //String result;
                     String id = et_id.getText().toString();
                     String pw = et_pw.getText().toString();
 
 
-                    RegisterActivity task = new RegisterActivity();
+                    RegisterLoginActivity task = new RegisterLoginActivity();
                     result = task.execute(id, pw).get();
+                    Log.v("MY", result);
+                    result_rep = result.replace(" ","");
+                    Log.v("MY", result_rep);
+
                 } catch (Exception e) {
-                    Log.i("DB test", ".....ERROR.....!");
+
                 }
-                Intent intent = new Intent(getApplicationContext(),MainActivity.class);
-                startActivity(intent);
-                finish();
+                if(result_rep.equals("1")) {
+                    Toast.makeText(getApplicationContext(), "로그인 성공!", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+                else{
+                    Toast.makeText(getApplicationContext(), "로그인 실패!", Toast.LENGTH_SHORT).show();
+                }
+
             }
 
         });

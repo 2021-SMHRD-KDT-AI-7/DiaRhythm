@@ -48,7 +48,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
         android:background="@drawable/radius"
-        android:backgroundTint="#FF0000"
+        android:backgroundTint="#003C8C"
         android:bottomLeftRadius="20dp"
         android:bottomRightRadius="10dp"
         android:text="로그인"

@@ -12,7 +12,7 @@
         android:theme="@style/Theme.Projecttest1"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".RegisterActivity"
+            android:name=".RegisterJoinActivity"
             android:exported="true"/>
 
         <activity

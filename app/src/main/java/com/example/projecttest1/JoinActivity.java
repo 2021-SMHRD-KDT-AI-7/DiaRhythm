@@ -4,18 +4,19 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 public class JoinActivity extends AppCompatActivity {
 
     EditText et_id_j,et_pw_j,et_name,et_address,et_pn;
-    RadioButton rg_male,rg_female;
+    RadioGroup radioGroup;
     Button btn_join_j,btn_cancel;
+    String gender="", date="sysdate", admin= "n";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,10 +28,23 @@ public class JoinActivity extends AppCompatActivity {
         et_name = findViewById(R.id.et_name);
         et_address = findViewById(R.id.et_address);
         et_pn = findViewById(R.id.et_pn);
-        rg_male = findViewById(R.id.rg_male);
-        rg_female = findViewById(R.id.rg_female);
+        radioGroup = findViewById(R.id.rg_gender);
         btn_join_j = findViewById(R.id.btn_join_j);
         btn_cancel =findViewById(R.id.btn_cancel);
+
+        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                switch (i){
+                    case R.id.rg_male:
+                        gender = "m";
+                        break;
+                    case R.id.rg_female:
+                        gender = "w";
+                        break;
+                }
+            }
+        });
 
 
 
@@ -45,15 +59,15 @@ public class JoinActivity extends AppCompatActivity {
                     String name = et_name.getText().toString();
                     String address = et_address.getText().toString();
                     String pn = et_pn.getText().toString();
-                    String male = rg_male.getText().toString();
-                    String female = rg_female.getText().toString();
 
 
 
-                    RegisterActivity task = new RegisterActivity();
-                    result = task.execute(id, pw,name,address,pn,male,female).get();
+
+                    RegisterJoinActivity task = new RegisterJoinActivity();
+                    result = task.execute(id, pw,name,address,pn,gender,date,admin).get();
+                    Log.v("MY", result);
                 } catch (Exception e) {
-                    //Log.i("DB test", ".....ERROR.....!");
+
                 }
                 Intent intent = new Intent(getApplicationContext(),LoginActivity.class);
                 startActivity(intent);
