@@ -3,6 +3,7 @@ package com.example.projecttest1;
 import android.graphics.Color;
 import android.os.Bundle;
 
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -12,6 +13,8 @@ import android.view.ViewGroup;
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.LineChart;
 //import com.github.mikephil.charting.components.Description;
+import com.github.mikephil.charting.components.AxisBase;
+import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.MarkerView;
 import com.github.mikephil.charting.components.XAxis;
@@ -19,10 +22,14 @@ import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
+import com.github.mikephil.charting.formatter.ValueFormatter;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -32,38 +39,88 @@ public class Fragment2 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_2, container, false);
-        lineChart = (LineChart) v.findViewById(R.id.linechart);
+        lineChart = v.findViewById(R.id.linechart);
+        ArrayList<String> X_date = new ArrayList<>();
+        X_date.add("월");
+        X_date.add("화");
+        X_date.add("수");
+        X_date.add("목");
+        X_date.add("금");
+        X_date.add("토");
+        X_date.add("일");
 
+        ArrayList<Integer> y_date = new ArrayList<>();
+        y_date.add(0);
+        y_date.add(6);
+        y_date.add(3);
+        y_date.add(14);
+        y_date.add(18);
+        y_date.add(20);
+        y_date.add(4);
+
+        // X축 생성
+        XAxis xAxis = lineChart.getXAxis();
+        //xAxis.enableGridDashedLine(10, 10, 10); // 그리드라인
+        xAxis.setTextSize(15);
+        xAxis.setTextColor((Color.parseColor("#304ffe")));
+
+        final String[] weekdays = {"월", "화", "수", "목", "금", "토", "일"};
+        xAxis.setValueFormatter(new IndexAxisValueFormatter(weekdays));
+
+
+        // y축 생성
+        YAxis yAxisLeft = lineChart.getAxisLeft(); // y축 왼쪽
+        YAxis yAxisRight = lineChart.getAxisRight();  // y축 오른쪽
+
+        yAxisLeft.setAxisMinimum(0);
+        yAxisLeft.setAxisMaximum(30);
+
+
+        yAxisLeft.setTextColor(ContextCompat.getColor(getContext(), R.color.black)); //Y축 텍스트 컬러 설정
+//        yAxisLeft.setGridColor(ContextCompat.getColor(getContext(), R.color.white)); // Y축 줄의 컬러 설정
+
+        yAxisRight.setDrawLabels(false);
+        yAxisRight.setDrawAxisLine(false);
+        yAxisRight.setDrawGridLines(false);
+//        // y축 오른쪽 활성화 제거
 
         ArrayList<Entry> entries = new ArrayList<>();
+        // 차트 데이터값 넣기
+        entries.add(new Entry(0, y_date.get(0)));
+        entries.add(new Entry(1, y_date.get(1)));
+        entries.add(new Entry(2, y_date.get(2)));
+        entries.add(new Entry(3, y_date.get(3)));
+        entries.add(new Entry(4, y_date.get(4)));
+        entries.add(new Entry(5, y_date.get(5)));
+        entries.add(new Entry(6, y_date.get(6)));
 
-
-
-        entries.add(new Entry(4f, 0));
-        entries.add(new Entry(8f, 1));
-        entries.add(new Entry(6f, 2));
-        entries.add(new Entry(2f, 3));
-        entries.add(new Entry(18f, 4));
-        entries.add(new Entry(9f, 5));
-        entries.add(new Entry(16f, 6));
-
-        LineDataSet dataset = new LineDataSet(entries, "감정 분석");
-
-        List<String> labels = new ArrayList<String>();
-        labels.add("월");
-        labels.add("화");
-        labels.add("수");
-        labels.add("목");
-        labels.add("금");
-        labels.add("토");
-        labels.add("일");
-        LineData data = new LineData( labels,dataset);
+        LineDataSet dataset = new LineDataSet(entries,null);
+        // 차트 만들기
+        dataset.setLineWidth(4);
+//        dataset.setColor(Color.parseColor("#ffa7c4"));
         dataset.setColors(ColorTemplate.COLORFUL_COLORS);
-        /*dataset.setDrawCubic(true); //선 둥글게 만들기
-        dataset.setDrawFilled(true); //그래프 밑부분 색칠*/
+        //dataset.setDrawCubic(true); //선 둥글게 만들기
+        //dataset.setDrawFilled(true); //그래프 밑부분 색칠
+        dataset.setDrawHighlightIndicators(true); // 눌렀을때 라인 표시
 
-        lineChart.setData(data);
-        lineChart.animateY(3000);
+//        dataset.setFormSize(20);
+
+
+
+        LineData lineData = new LineData(dataset);
+        // 차트 그리기
+        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+
+        lineChart.setData(lineData);
+        lineChart.animateY(2000);
+        lineChart.setDoubleTapToZoomEnabled(false);
+
+//        lineChart.setDrawGridBackground(true); // 배경에 점선 표시
+//        Description description = new Description(); // 차트 주석 생성
+//        description.setText(""); // 주석 미기입
+//        lineChart.setDescription(description); // 주석 그리기
+
+
 
 
         return v;
