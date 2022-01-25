@@ -2,7 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.projecttest1">
-    <uses-permission android:name="android.permission.INTERNET"/> <!-- 인터넷을 사용하므로 꼭 넣어줘야함 -->
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -12,14 +14,14 @@
         android:theme="@style/Theme.Projecttest1"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".DiaryActivity"
+            android:exported="false" />
+        <activity
             android:name=".RegisterJoinActivity"
-            android:exported="true"/>
-
+            android:exported="true" />
         <activity
             android:name=".IntroActivity"
-            android:exported="true"/>
-
-
+            android:exported="true" />
         <activity
             android:name=".DBActivity"
             android:exported="false" />
@@ -29,10 +31,9 @@
         <activity
             android:name=".LoginActivity"
             android:exported="true" />
-
         <activity
             android:name=".MainActivity"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
