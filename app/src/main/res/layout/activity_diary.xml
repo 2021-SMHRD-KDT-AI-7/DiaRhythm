@@ -41,4 +41,62 @@
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.1" />
 
+    <EditText
+        android:id="@+id/et_write_title"
+        android:layout_width="276dp"
+        android:layout_height="51dp"
+        android:background="@android:drawable/editbox_dropdown_light_frame"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:paddingLeft="10dp"
+        android:text="Name"
+        android:textColor="#0B0B0B"
+        app:layout_constraintBottom_toTopOf="@+id/et_write_content"
+        app:layout_constraintEnd_toStartOf="@+id/guideline11"
+        app:layout_constraintStart_toStartOf="@+id/guideline13"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <EditText
+        android:id="@+id/et_write_content"
+        android:layout_width="275dp"
+        android:layout_height="339dp"
+        android:layout_marginTop="92dp"
+        android:background="@android:drawable/editbox_dropdown_light_frame"
+        android:ems="10"
+        android:gravity="top|left"
+        android:hint="일기를 작성하세요."
+        android:inputType="textMultiLine|textPersonName"
+        android:paddingLeft="10dp"
+        android:paddingTop="10dp"
+        android:scrollHorizontally="false"
+        android:singleLine="true"
+        android:text="1111"
+        android:textColor="#040303"
+        app:layout_constraintEnd_toStartOf="@+id/guideline11"
+        app:layout_constraintStart_toStartOf="@+id/guideline13"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <Button
+        android:id="@+id/btn_write_submit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="80dp"
+        android:text="작성"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_write_content"
+        app:layout_constraintVertical_bias="0.352" />
+
+    <Button
+        android:id="@+id/btn_write_cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="28dp"
+        android:text="취소"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline13"
+        app:layout_constraintTop_toBottomOf="@+id/et_write_content"
+        app:layout_constraintVertical_bias="0.035" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

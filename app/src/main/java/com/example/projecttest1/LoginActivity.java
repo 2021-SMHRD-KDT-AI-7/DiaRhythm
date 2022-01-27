@@ -30,11 +30,14 @@ public class LoginActivity extends AppCompatActivity {
         et_id = (EditText)findViewById(R.id.et_id);
         et_pw = (EditText)findViewById(R.id.et_pw);
 
+
+
         // 로그인 Activity 메소드
         btn_login.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 try {
                     //String result;
+
                     String id = et_id.getText().toString();
                     String pw = et_pw.getText().toString();
 
@@ -49,8 +52,12 @@ public class LoginActivity extends AppCompatActivity {
 
                 }
                 if(result_rep.equals("1")) {
+
+                    String id = et_id.getText().toString();
+
                     Toast.makeText(getApplicationContext(), "로그인 성공!", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                    intent.putExtra("string",id);
                     startActivity(intent);
                     finish();
                 }
@@ -65,11 +72,22 @@ public class LoginActivity extends AppCompatActivity {
         btn_join.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+
+
                 Intent intent = new Intent(LoginActivity.this, JoinActivity.class);
                 startActivity(intent);
                 finish();
             }
         });
+
+
+        //String id = et_id.getText().toString();
+
+        //Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+//        Intent intent = new Intent();
+//                intent.putExtra("string",id);
+//        startActivity(intent);
 
 
     }
