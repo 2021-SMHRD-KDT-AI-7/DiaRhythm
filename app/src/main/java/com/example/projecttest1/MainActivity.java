@@ -6,8 +6,13 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -19,6 +24,8 @@ public class MainActivity extends AppCompatActivity {
     private static final int num_pages = 5;
     private ViewPager2 pager;
     private FragmentStateAdapter pagerAdapter;
+    ImageView img_write;
+    TextView tv_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,9 +33,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         bnview = findViewById(R.id.bnview);
-        pager = findViewById(R.id.pager);
-        pagerAdapter = new ScreeSlidePagerAdapter(this);
-        pager.setAdapter(pagerAdapter);
+//        pager = findViewById(R.id.pager);
+//        pagerAdapter = new ScreeSlidePagerAdapter(this);
+//        pager.setAdapter(pagerAdapter);
+        img_write = findViewById(R.id.img_write);
+        tv_id = findViewById(R.id.tv_id);
 
 
 
@@ -57,8 +66,31 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        Bundle extras = getIntent().getExtras();
+        String id = extras.getString("string");
+        tv_id.setText(id);
+
+        // diary write
+      img_write.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent(MainActivity.this,DiaryActivity.class);
+                intent.putExtra("string",id);
+                startActivity(intent);
+
+            }
+        });
+
+
+
+        //int i = extras.getInt("integer");
+
     }
 
+
+
+/*
     //뒤로가기 눌렀을때 처리
     // 뷰페이저2 동작하는 것과 상관 없으므로 (onBackPressed 메소드)생략 가능
     @Override
@@ -90,5 +122,5 @@ public class MainActivity extends AppCompatActivity {
             return num_pages; //페이지 수 지정.
             }
     }
-
+*/
 }
