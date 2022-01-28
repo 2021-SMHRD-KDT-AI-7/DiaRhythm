@@ -43,9 +43,7 @@ public class RegisterwriteActivity extends AsyncTask<String, Void, String> {
 
             //jsp 와 통신 성공 시 수행
             if (conn.getResponseCode() == conn.HTTP_OK) {
-                //inputStream = (InputStream) conn.getContent();
                 InputStreamReader tmp = new InputStreamReader(conn.getInputStream(),"UTF-8");
-                //InputStreamReader tmp = new InputStreamReader(inputStream,"UTF-8");
                 BufferedReader reader = new BufferedReader(tmp);
                 StringBuffer buffer = new StringBuffer();
 

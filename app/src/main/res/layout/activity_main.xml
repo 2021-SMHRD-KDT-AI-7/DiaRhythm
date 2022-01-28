@@ -15,8 +15,8 @@
 
         android:backgroundTintMode="add"
         app:itemBackground="@drawable/background_transparent"
-        app:itemIconTint="@android:color/tab_indicator_text"
-        app:itemTextColor="@android:color/tab_indicator_text"
+        app:itemIconTint="@android:color/white"
+        app:itemTextColor="@android:color/system_neutral2_0"
         app:labelVisibilityMode="labeled"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/container"
@@ -43,17 +43,6 @@
             android:layout_height="match_parent" />
 
     </FrameLayout>
-
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/pager"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-    </androidx.viewpager2.widget.ViewPager2>
 
     <ImageView
         android:id="@+id/img_write"
