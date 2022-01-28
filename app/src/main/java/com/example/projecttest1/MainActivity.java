@@ -22,9 +22,9 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 public class MainActivity extends AppCompatActivity {
 
     BottomNavigationView bnview;
-    private static final int num_pages = 5;
-    private ViewPager2 pager;
-    private FragmentStateAdapter pagerAdapter;
+//    private static final int num_pages = 5;
+//    private ViewPager2 pager;
+//    private FragmentStateAdapter pagerAdapter;
     ImageView img_write;
     TextView tv_id;
 
@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        //int i = extras.getInt("integer");
+        int i = extras.getInt("integer");
     }
 
 
