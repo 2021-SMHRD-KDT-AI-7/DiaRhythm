@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -40,25 +41,24 @@ public class MainActivity extends AppCompatActivity {
         tv_id = findViewById(R.id.tv_id);
 
 
-
         bnview.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
-                if(item.getItemId()==R.id.tab1){
-                    getSupportFragmentManager().beginTransaction().replace(R.id.container,new Fragment1()).commit();
+                if (item.getItemId() == R.id.tab1) {
+                    getSupportFragmentManager().beginTransaction().replace(R.id.container, new Fragment1()).commit();
 
-                }else if(item.getItemId()==R.id.tab2){
-                    getSupportFragmentManager().beginTransaction().replace(R.id.container,new Fragment2()).commit();
+                } else if (item.getItemId() == R.id.tab2) {
+                    getSupportFragmentManager().beginTransaction().replace(R.id.container, new Fragment2()).commit();
 
-                }else if(item.getItemId()==R.id.tab3){
-                    getSupportFragmentManager().beginTransaction().replace(R.id.container,new Fragment3()).commit();
+                } else if (item.getItemId() == R.id.tab3) {
+                    getSupportFragmentManager().beginTransaction().replace(R.id.container, new Fragment3()).commit();
 
-                }else if(item.getItemId()==R.id.tab4){
-                    getSupportFragmentManager().beginTransaction().replace(R.id.container,new Fragment4()).commit();
+                } else if (item.getItemId() == R.id.tab4) {
+                    getSupportFragmentManager().beginTransaction().replace(R.id.container, new Fragment4()).commit();
 
-                }else if(item.getItemId()==R.id.tab5){
-                    getSupportFragmentManager().beginTransaction().replace(R.id.container,new Fragment5()).commit();
+                } else if (item.getItemId() == R.id.tab5) {
+                    getSupportFragmentManager().beginTransaction().replace(R.id.container, new Fragment5()).commit();
 
                 }
 
@@ -71,22 +71,21 @@ public class MainActivity extends AppCompatActivity {
         tv_id.setText(id);
 
         // diary write
-      img_write.setOnClickListener(new View.OnClickListener() {
+        img_write.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                Intent intent = new Intent(MainActivity.this,DiaryActivity.class);
-                intent.putExtra("string",id);
+                Intent intent = new Intent(MainActivity.this, DiaryActivity.class);
+                intent.putExtra("string", id);
                 startActivity(intent);
 
             }
         });
 
 
-
         //int i = extras.getInt("integer");
-
     }
+
 
 
 
@@ -122,5 +121,6 @@ public class MainActivity extends AppCompatActivity {
             return num_pages; //페이지 수 지정.
             }
     }
+
 */
 }

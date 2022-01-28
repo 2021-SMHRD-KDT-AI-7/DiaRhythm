@@ -19,14 +19,13 @@ public class Fragment5 extends Fragment {
                              Bundle savedInstanceState) {
         View v=inflater.inflate(R.layout.fragment_5, container, false);
 
-    final ScrollView scrollView = (ScrollView)v.findViewById(R.id.sc_view);
+//    sc_view.post(new Runnable() {
+//        @Override
+//        public void run() {
+//            sc_view.fullScroll((sc_view.FOCUS_UP));
+//        }
+//    });
 
-    scrollView.post(new Runnable() {
-        @Override
-        public void run() {
-            scrollView.fullScroll(scrollView.FOCUS_DOWN);
-        }
-    });
 
 
 
