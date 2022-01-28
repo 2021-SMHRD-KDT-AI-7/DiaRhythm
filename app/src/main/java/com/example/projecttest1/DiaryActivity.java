@@ -16,7 +16,6 @@ public class DiaryActivity extends AppCompatActivity {
     EditText et_title;
     Button btn_submit;
     Button btn_cancel;
-    String date="sysdate";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,12 +43,13 @@ public class DiaryActivity extends AppCompatActivity {
                     String content = et_content.getText().toString();
 
                     RegisterwriteActivity task = new RegisterwriteActivity();
-                    result = task.execute(id, title,content,date).get();
-                    Log.v("MY", result);
+                    result = task.execute(title,content,id).get();
+                    Log.v("return", result);
                 } catch (Exception e) {
 
                 }
                 Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                intent.putExtra("string",id);
                 startActivity(intent);
                 finish();
 
@@ -58,15 +58,12 @@ public class DiaryActivity extends AppCompatActivity {
         });
 
 
-
-
-
-
         // btn_cancel 메소드
         btn_cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(DiaryActivity.this, MainActivity.class);
+                intent.putExtra("string",id);
                 startActivity(intent);
                 finish();
             }
