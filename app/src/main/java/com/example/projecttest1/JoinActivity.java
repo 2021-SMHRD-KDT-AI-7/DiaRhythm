@@ -60,12 +60,15 @@ public class JoinActivity extends AppCompatActivity {
                     String address = et_address.getText().toString();
                     String pn = et_pn.getText().toString();
 
+                    // 아이디 중복시  토스트 넣기
+
                     RegisterJoinActivity task = new RegisterJoinActivity();
                     result = task.execute(id, pw,name,address,pn,gender,date,admin).get();
                     Log.v("MY", result);
                 } catch (Exception e) {
 
                 }
+                //if(result.equale)
                 Intent intent = new Intent(getApplicationContext(),LoginActivity.class);
                 startActivity(intent);
                 finish();

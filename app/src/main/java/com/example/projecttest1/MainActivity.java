@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     ImageView img_write;
     TextView tv_id;
     Fragment4  fragment4;
+    String str="zz";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
 //        pager.setAdapter(pagerAdapter);
         img_write = findViewById(R.id.img_write);
         tv_id = findViewById(R.id.tv_id);
+        //fragment4 = (Fragment4)findViewById();
+
 
 
         bnview.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -61,10 +64,7 @@ public class MainActivity extends AppCompatActivity {
 
                 } else if (item.getItemId() == R.id.tab5) {
                     getSupportFragmentManager().beginTransaction().replace(R.id.container, new Fragment5()).commit();
-
-
                 }
-
                 return true;
             }
         });
@@ -74,15 +74,11 @@ public class MainActivity extends AppCompatActivity {
         String id = extras.getString("string");
         tv_id.setText(id);
 
-        //번들객체 생성, text값 저장 
-        Bundle bundle = new Bundle(); 
-        bundle.putString("id",id);
-
-
-        // fragment4로 전달
-        fragment4= new Fragment4();
+/*
+        Bundle bundle = new Bundle();
+        bundle.putString("data2", tv_id.getText().toString());
         fragment4.setArguments(bundle);
-        Log.v("frg4 id",id);
+*/
 
         // diary write
         img_write.setOnClickListener(new View.OnClickListener() {
@@ -97,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        int i = extras.getInt("integer");
+       // int i = extras.getInt("integer");
     }
 
 
