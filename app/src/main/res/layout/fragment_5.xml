@@ -7,95 +7,99 @@
     android:layout_height="match_parent"
     tools:context=".Fragment5">
 
-    <androidx.core.widget.NestedScrollView
-        android:layout_width="409dp"
-        android:layout_height="657dp"
-        android:fillViewport="true"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:background="#3247B6"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/tv_name_f5"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_marginTop="120dp"
+            android:text="정찬준 님 "
+            android:textSize="24sp"
+            app:layout_constraintEnd_toStartOf="@+id/tv_grade"
+            app:layout_constraintHorizontal_bias="0.848"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:background="#3247B6">
+        <TextView
+            android:id="@+id/tv_join_f5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="32dp"
+            android:text="가입한 지"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toStartOf="@+id/tv_ga"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_name_f5" />
 
-                <TextView
-                    android:id="@+id/textView25"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="84dp"
-                    android:text="정찬준 님 "
-                    android:textSize="24sp"
-                    app:layout_constraintEnd_toStartOf="@+id/textView28"
-                    app:layout_constraintHorizontal_bias="0.833"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/tv_ga"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="144dp"
+            android:text="D+278"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_join_f5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_join_f5"
+            app:layout_constraintVertical_bias="0.0" />
 
-                <TextView
-                    android:id="@+id/textView26"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginEnd="32dp"
-                    android:text="가입한 지"
-                    android:textSize="18sp"
-                    app:layout_constraintEnd_toStartOf="@+id/textView27"
-                    app:layout_constraintHorizontal_bias="1.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView25" />
+        <TextView
+            android:id="@+id/tv_grade"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="128dp"
+            android:text="일반 회원"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_name_f5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_name_f5" />
 
-                <TextView
-                    android:id="@+id/textView27"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="144dp"
-                    android:text="D+278"
-                    android:textSize="18sp"
-                    app:layout_constraintBottom_toBottomOf="@+id/textView26"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/textView26"
-                    app:layout_constraintVertical_bias="0.0" />
+        <Button
+            android:id="@+id/btn_logout"
+            android:layout_width="90dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="4dp"
+            android:backgroundTint="#BD2A2A"
+            android:text="로그아웃"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.981"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
-                    android:id="@+id/textView28"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="128dp"
-                    android:text="일반 회원"
-                    android:textSize="18sp"
-                    app:layout_constraintBottom_toBottomOf="@+id/textView25"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/textView25" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <Button
-                    android:id="@+id/button"
-                    android:layout_width="90dp"
-                    android:layout_height="40dp"
-                    android:layout_marginTop="4dp"
-                    android:backgroundTint="#BD2A2A"
-                    android:text="로그아웃"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.981"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="#FBFBFB"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
 
-            <ListView
-                android:id="@+id/listview"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:backgroundTint="#9E5858">
+        <ListView
+            android:id="@+id/lv"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:backgroundTint="#FFFFFF"
+            android:divider="#FFFFFF"
+            android:dividerHeight="0px"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-            </ListView>
-
-        </LinearLayout>
-    </androidx.core.widget.NestedScrollView>
+        </ListView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

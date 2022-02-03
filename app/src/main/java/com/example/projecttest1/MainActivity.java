@@ -62,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
                 } else if (item.getItemId() == R.id.tab5) {
                     getSupportFragmentManager().beginTransaction().replace(R.id.container, new Fragment5()).commit();
 
+
                 }
 
                 return true;
