@@ -40,14 +40,14 @@ public class Fragment2 extends Fragment {
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_2, container, false);
         lineChart = v.findViewById(R.id.linechart);
-        ArrayList<String> X_date = new ArrayList<>();
-        X_date.add("월");
-        X_date.add("화");
-        X_date.add("수");
-        X_date.add("목");
-        X_date.add("금");
-        X_date.add("토");
-        X_date.add("일");
+//        ArrayList<String> X_date = new ArrayList<>();
+//        X_date.add("월");
+//        X_date.add("화");
+//        X_date.add("수");
+//        X_date.add("목");
+//        X_date.add("금");
+//        X_date.add("토");
+//        X_date.add("일");
 
         ArrayList<Integer> y_date = new ArrayList<>();
         y_date.add(0);
@@ -62,7 +62,8 @@ public class Fragment2 extends Fragment {
         XAxis xAxis = lineChart.getXAxis();
         //xAxis.enableGridDashedLine(10, 10, 10); // 그리드라인
         xAxis.setTextSize(15);
-        xAxis.setTextColor((Color.parseColor("#304ffe")));
+//        xAxis.setTextColor((Color.parseColor("#304ffe")));
+        xAxis.setTextColor((Color.parseColor("#FFFFFF")));
 
         final String[] weekdays = {"월", "화", "수", "목", "금", "토", "일"};
         xAxis.setValueFormatter(new IndexAxisValueFormatter(weekdays));
@@ -72,11 +73,16 @@ public class Fragment2 extends Fragment {
         YAxis yAxisLeft = lineChart.getAxisLeft(); // y축 왼쪽
         YAxis yAxisRight = lineChart.getAxisRight();  // y축 오른쪽
 
-        yAxisLeft.setAxisMinimum(0);
-        yAxisLeft.setAxisMaximum(30);
+        String happy = "행복지수";
+//        yAxisLeft.setAxisMinimum(0);
+//        yAxisLeft.setAxisMaximum(30);
+        yAxisLeft.setTextSize(15);
+        yAxisLeft.setValueFormatter(new IndexAxisValueFormatter(Collections.singleton(happy)));
+        yAxisLeft.setTextColor((Color.parseColor("#fafafa")));
 
 
-        yAxisLeft.setTextColor(ContextCompat.getColor(getContext(), R.color.black)); //Y축 텍스트 컬러 설정
+
+//        yAxisLeft.setTextColor(ContextCompat.getColor(getContext(), R.color.black)); //Y축 텍스트 컬러 설정
 //        yAxisLeft.setGridColor(ContextCompat.getColor(getContext(), R.color.white)); // Y축 줄의 컬러 설정
 
         yAxisRight.setDrawLabels(false);
