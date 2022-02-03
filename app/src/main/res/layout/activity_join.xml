@@ -39,21 +39,6 @@
         app:layout_constraintTop_toBottomOf="@+id/et_id_j" />
 
     <EditText
-        android:id="@+id/et_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:backgroundTint="#E6D5D5"
-        android:ems="10"
-        android:hint="이름"
-        android:inputType="textPersonName"
-        android:textColor="#FFFFFF"
-        android:textColorHint="#CAC1C1"
-        app:layout_constraintEnd_toEndOf="@+id/et_pw_j"
-        app:layout_constraintStart_toStartOf="@+id/et_pw_j"
-        app:layout_constraintTop_toBottomOf="@+id/et_pw_j" />
-
-    <EditText
         android:id="@+id/et_address"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -83,6 +68,21 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/et_address"
         app:layout_constraintTop_toBottomOf="@+id/et_address" />
+
+    <EditText
+        android:id="@+id/et_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="#E6D5D5"
+        android:ems="10"
+        android:hint="이름"
+        android:inputType="textPersonName"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#CAC1C1"
+        app:layout_constraintEnd_toEndOf="@+id/et_pw_j"
+        app:layout_constraintStart_toStartOf="@+id/et_pw_j"
+        app:layout_constraintTop_toBottomOf="@+id/et_pw_j" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"

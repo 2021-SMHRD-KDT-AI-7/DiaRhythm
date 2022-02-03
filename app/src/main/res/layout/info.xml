@@ -8,7 +8,6 @@
     android:paddingBottom="16dp"
     android:text=" 안녕하세요 가나다라마바사"
     android:textAlignment="textStart"
-    android:textColor="#070707"
     android:textSize="24sp">
 
 </TextView>
