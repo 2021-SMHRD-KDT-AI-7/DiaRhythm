@@ -60,9 +60,6 @@ public class JoinActivity extends AppCompatActivity {
                     String address = et_address.getText().toString();
                     String pn = et_pn.getText().toString();
 
-
-
-
                     RegisterJoinActivity task = new RegisterJoinActivity();
                     result = task.execute(id, pw,name,address,pn,gender,date,admin).get();
                     Log.v("MY", result);
