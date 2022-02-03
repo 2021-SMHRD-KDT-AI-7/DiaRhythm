@@ -32,26 +32,39 @@ public class DiaryActivity extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         String id = extras.getString("string");
 
-
         btn_submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                try {
-                    String result;
-                    String title = et_title.getText().toString();
-                    String content = et_content.getText().toString();
 
-                    RegisterwriteActivity task = new RegisterwriteActivity();
-                    result = task.execute(title,content,id).get();
-                    Log.v("return", result);
-                } catch (Exception e) {
+                if(et_title.getText().length() !=0 && et_content.getText().length()!=0){
+                    try {
+                        String result;
+                        String title = et_title.getText().toString();
+                        String content = et_content.getText().toString();
+                        RegisterwriteActivity task = new RegisterwriteActivity();
+                        result = task.execute(title,content,id).get();
 
+                        Log.v("return", result);
+                        Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                        intent.putExtra("string",id);
+                        startActivity(intent);
+                        finish();
+
+                    } catch (Exception e) {
+
+                    }
+
+                }else if(et_title.getText().toString().length()==0){
+                        Toast.makeText(getApplicationContext(),"제목을 입력해주세요",Toast.LENGTH_SHORT).show();
+
+                }else if(et_content.getText().toString().length()==0){
+
+                    Toast.makeText(getApplicationContext(),"내용을 입력해주세요", Toast.LENGTH_SHORT).show();
                 }
-                Intent intent = new Intent(getApplicationContext(),MainActivity.class);
-                intent.putExtra("string",id);
-                startActivity(intent);
-                finish();
+
+
+
 
             }
 
