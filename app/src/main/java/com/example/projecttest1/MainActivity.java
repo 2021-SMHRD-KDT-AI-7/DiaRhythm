@@ -9,6 +9,7 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -27,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
 //    private FragmentStateAdapter pagerAdapter;
     ImageView img_write;
     TextView tv_id;
+    Fragment4  fragment4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,9 +68,20 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // id 값 받고 출력
         Bundle extras = getIntent().getExtras();
         String id = extras.getString("string");
         tv_id.setText(id);
+
+        //번들객체 생성, text값 저장 
+        Bundle bundle = new Bundle(); 
+        bundle.putString("id",id);
+
+
+        // fragment4로 전달
+        fragment4= new Fragment4();
+        fragment4.setArguments(bundle);
+        Log.v("frg4 id",id);
 
         // diary write
         img_write.setOnClickListener(new View.OnClickListener() {

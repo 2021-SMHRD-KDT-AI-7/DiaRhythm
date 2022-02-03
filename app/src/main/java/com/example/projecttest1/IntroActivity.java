@@ -19,18 +19,17 @@ public class IntroActivity extends AppCompatActivity {
         setContentView(R.layout.activity_intro);
 
         img_loading = findViewById(R.id.img_loading);
-        Glide.with(this).load(R.drawable.loading_image).into(img_loading);
+        // gif 를 사용하기 위한 코드(gif 불러오기)
+        Glide.with(this).load(R.drawable.loading_image2).into(img_loading);
 
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(IntroActivity.this,LoginActivity.class);
+                Intent intent = new Intent(IntroActivity.this, LoginActivity.class);
                 startActivity(intent);
                 finish();
             }
-        },2500);
-
-
-        }
+        }, 2500);
     }
+}

@@ -29,7 +29,6 @@ public class RegisterwriteActivity extends AsyncTask<String, Void, String> {
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
             conn.setRequestMethod("POST");
-            //OutputStreamWriter osw = new OutputStreamWriter(conn.getOutputStream(),"UTF-8");
             OutputStreamWriter osw = new OutputStreamWriter(conn.getOutputStream(),"UTF-8");
 
             // 전송할 데이터. GET 방식으로 작성

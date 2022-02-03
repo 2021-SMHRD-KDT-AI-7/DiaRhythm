@@ -5,15 +5,16 @@
     android:id="@+id/frameLayout4"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_img1"
+    android:background="@drawable/background_img2"
     tools:context=".Fragment4">
 
 
     <com.prolificinteractive.materialcalendarview.MaterialCalendarView
         android:id="@+id/calendarView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="419dp"
+        android:layout_height="262dp"
         android:layout_weight="1"
+        app:layout_constraintBottom_toTopOf="@+id/guideline17"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -21,5 +22,35 @@
         app:mcv_arrowColor="#FFFFFF"
         app:mcv_selectionColor="#227E75"
         app:mcv_showOtherDates="all" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline17"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.4" />
+
+    <TextView
+        android:id="@+id/tv_title_read"
+        android:layout_width="349dp"
+        android:layout_height="33dp"
+        android:layout_marginTop="50dp"
+        android:text="title"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/calendarView" />
+
+    <TextView
+        android:id="@+id/tv_content_read"
+        android:layout_width="351dp"
+        android:layout_height="280dp"
+        android:layout_marginTop="25dp"
+        android:text="content"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_title_read" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

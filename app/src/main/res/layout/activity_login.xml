@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/nightsky"
+    android:background="@drawable/login_img"
     tools:context=".LoginActivity">
 
 
@@ -13,7 +13,7 @@
         android:id="@+id/et_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="250dp"
         android:background="@null"
         android:ems="10"
         android:hint="아이디"
@@ -29,7 +29,7 @@
         android:id="@+id/et_pw"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="25dp"
         android:background="@null"
         android:ems="10"
         android:hint="패스워드"

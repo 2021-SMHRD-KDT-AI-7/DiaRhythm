@@ -5,7 +5,7 @@
     android:id="@+id/frameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_img1"
+    android:background="@drawable/background_img2"
     tools:context=".Fragment1">
 
     <TextView
@@ -45,24 +45,32 @@
 
     <TextView
         android:id="@+id/tv_saying_content"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="298dp"
+        android:layout_height="116dp"
         android:layout_marginTop="56dp"
+        android:gravity="start|top"
+        android:paddingLeft="5dp"
+        android:paddingTop="10dp"
+        android:scrollHorizontally="false"
+        android:singleLine="false"
         android:text="일찍 일어나는 새가 벌레를 터트리는 법"
         android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/jo"
         app:layout_constraintEnd_toStartOf="@+id/guideline7"
+        app:layout_constraintHorizontal_bias="0.487"
         app:layout_constraintStart_toStartOf="@+id/guideline6"
-        app:layout_constraintTop_toBottomOf="@+id/tv_saying" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_saying"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="112dp"
+        android:layout_marginTop="64dp"
         android:text="다마고찌"
         android:textSize="16sp"
         app:layout_constraintEnd_toStartOf="@+id/guideline7"
-        app:layout_constraintHorizontal_bias="0.081"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/guideline6"
         app:layout_constraintTop_toBottomOf="@+id/tv_saying_content" />
 
@@ -71,9 +79,9 @@
         android:layout_width="199dp"
         android:layout_height="159dp"
         android:src="@drawable/jordy"
+        app:layout_constraintBottom_toTopOf="@+id/guideline10"
         app:layout_constraintEnd_toStartOf="@+id/guideline7"
-        app:layout_constraintStart_toStartOf="@+id/guideline6"
-        app:layout_constraintTop_toTopOf="@+id/guideline9" />
+        app:layout_constraintStart_toStartOf="@+id/guideline6" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline9"
@@ -81,5 +89,27 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.5" />
+
+    <ImageView
+        android:id="@+id/box_white"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/box_white2"
+        app:layout_constraintBottom_toTopOf="@+id/guideline16"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.81" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.74" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

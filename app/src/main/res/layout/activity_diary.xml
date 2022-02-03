@@ -59,16 +59,16 @@
 
     <EditText
         android:id="@+id/et_write_content"
-        android:layout_width="275dp"
-        android:layout_height="339dp"
+        android:layout_width="318dp"
+        android:layout_height="383dp"
         android:layout_marginTop="92dp"
-        android:background="@android:drawable/editbox_dropdown_light_frame"
+        android:background="@drawable/write_background"
         android:ems="10"
         android:gravity="top|left"
         android:hint="일기를 작성하세요."
         android:inputType="textMultiLine|textPersonName"
-        android:paddingLeft="10dp"
-        android:paddingTop="10dp"
+        android:paddingLeft="35dp"
+        android:paddingTop="40dp"
         android:scrollHorizontally="false"
         android:singleLine="true"
         android:textColor="#040303"
@@ -81,23 +81,22 @@
         android:id="@+id/btn_write_submit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="80dp"
+        android:layout_marginEnd="44dp"
         android:text="작성"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline11"
         app:layout_constraintTop_toBottomOf="@+id/et_write_content"
-        app:layout_constraintVertical_bias="0.352" />
+        app:layout_constraintVertical_bias="0.04000002" />
 
     <Button
         android:id="@+id/btn_write_cancel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="44dp"
-        android:layout_marginTop="28dp"
         android:text="취소"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline13"
         app:layout_constraintTop_toBottomOf="@+id/et_write_content"
-        app:layout_constraintVertical_bias="0.035" />
+        app:layout_constraintVertical_bias="0.04000002" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
