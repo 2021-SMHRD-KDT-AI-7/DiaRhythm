@@ -54,6 +54,7 @@
         android:scrollHorizontally="false"
         android:singleLine="false"
         android:text="일찍 일어나는 새가 벌레를 터트리는 법"
+        android:textAlignment="center"
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/jo"
         app:layout_constraintEnd_toStartOf="@+id/guideline7"

@@ -31,6 +31,7 @@ public class Fragment1 extends Fragment {
         try {
             String result;
 
+
             RegistersayingActivity task = new RegistersayingActivity();
             result = task.execute().get();
             Log.v("return", result);
