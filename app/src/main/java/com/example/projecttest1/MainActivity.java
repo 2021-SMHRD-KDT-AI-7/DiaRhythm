@@ -23,64 +23,88 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 public class MainActivity extends AppCompatActivity {
 
     BottomNavigationView bnview;
-//    private static final int num_pages = 5;
-//    private ViewPager2 pager;
-//    private FragmentStateAdapter pagerAdapter;
+    
     ImageView img_write;
     TextView tv_id;
-    Fragment4  fragment4;
-    String str="zz";
+    
+    // fragment 선언
+    Fragment1 fragment1;
+    Fragment2 fragment2;
+    Fragment3 fragment3;
+    Fragment4 fragment4;
+    Fragment5 fragment5;
 
+    /* 뷰페이저 선언
+    private static final int num_pages = 5;
+    private ViewPager2 pager;
+    private FragmentStateAdapter pagerAdapter;
+*/
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        
+
+        // fragment 생성
+        fragment1 = new Fragment1();
+        fragment2 = new Fragment2();
+        fragment3 = new Fragment3();
+        fragment4 = new Fragment4();
+        fragment5 = new Fragment5();
 
         bnview = findViewById(R.id.bnview);
-//        pager = findViewById(R.id.pager);
-//        pagerAdapter = new ScreeSlidePagerAdapter(this);
-//        pager.setAdapter(pagerAdapter);
         img_write = findViewById(R.id.img_write);
         tv_id = findViewById(R.id.tv_id);
-        //fragment4 = (Fragment4)findViewById();
 
+/*     뷰페이저 변수담기
+        pager = findViewById(R.id.pager);
+        pagerAdapter = new ScreeSlidePagerAdapter(this);
+        pager.setAdapter(pagerAdapter);
+*/
 
+        // LoginActivity에서 id 값 넘겨받아 변수에 저장
+        Bundle extras = getIntent().getExtras();
+        String id = extras.getString("string");
 
+        // id 값 확인용 Textview
+        tv_id.setText(id);
+
+        // BottomNavigationView 클릭 동작 메소드
         bnview.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-
+                
+                // 해당 탭 클릭 시 화면 전환
                 if (item.getItemId() == R.id.tab1) {
-                    getSupportFragmentManager().beginTransaction().replace(R.id.container, new Fragment1()).commit();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment1).commit();
 
                 } else if (item.getItemId() == R.id.tab2) {
-                    getSupportFragmentManager().beginTransaction().replace(R.id.container, new Fragment2()).commit();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment2).commit();
 
                 } else if (item.getItemId() == R.id.tab3) {
-                    getSupportFragmentManager().beginTransaction().replace(R.id.container, new Fragment3()).commit();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment3).commit();
 
                 } else if (item.getItemId() == R.id.tab4) {
-                    getSupportFragmentManager().beginTransaction().replace(R.id.container, new Fragment4()).commit();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment4).commit();
+
+                    // Activity -> fragment 로 데이터를 전달 할 Bundle 클래스 생성
+                    Bundle bundle = new Bundle();
+                    // bundle 변수에 id 값을 넣고 "text" 라는 key값 부여(값을 넘겨받을 때 key값으로 구분)
+                    bundle.putString("id",id);
+
+                    // id 값이 저장된 bundle을  Arguments에 담아 fragment4로 넘겨주기
+                    fragment4.setArguments(bundle);
 
                 } else if (item.getItemId() == R.id.tab5) {
-                    getSupportFragmentManager().beginTransaction().replace(R.id.container, new Fragment5()).commit();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment5).commit();
                 }
                 return true;
             }
         });
 
-        // id 값 받고 출력
-        Bundle extras = getIntent().getExtras();
-        String id = extras.getString("string");
-        tv_id.setText(id);
 
-/*
-        Bundle bundle = new Bundle();
-        bundle.putString("data2", tv_id.getText().toString());
-        fragment4.setArguments(bundle);
-*/
-
-        // diary write
+        // 일기 쓰기 메소드
         img_write.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -23,22 +23,10 @@ import java.util.Collections;
 
 public class Fragment4 extends Fragment {
 
-    String str = "";
+    TextView tv_test;
     TextView tv_title_read;
-/*
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    TextView tv_content_read ;
 
-        tv_title_read =
-
-
-        Bundle extras = getActivity().getIntent().getExtras();
-        String id = extras.getString("string");
-        tv_id.setText(id);
-
-    }
-*/
 
     @Nullable
     @Override
@@ -56,51 +44,21 @@ public class Fragment4 extends Fragment {
                 new SaturdayDecorator()
         );
 
-        //TextView tv_title_read = v.findViewById(R.id.tv_title_read);
-        TextView tv_content_read = v.findViewById(R.id.tv_content_read);
-/*
-        try {
-            //RequestActivity에서 전달한 번들 저장
-            Bundle bundle = getArguments();
+        tv_test = v.findViewById(R.id.tv_test);
+        tv_content_read = v.findViewById(R.id.tv_content_read);
+        tv_title_read = v.findViewById(R.id.tv_title_read);
 
-            //번들 안의 텍스트 불러오기
-            String text = bundle.getString("id");
-            if (getArguments() != null)
-            {
-                text = getArguments().getString("id"); // 프래그먼트1에서 받아온 값 넣기
-                tv_title_read.setText(text);
-            }
-            //fragment1의 TextView에 전달 받은 text 띄우기
-            tv_title_read.setText(text);
-        }
-        catch (Exception e){
 
-        }
-*/
-
-        Bundle extra = getArguments();
-        if (extra != null) {
-            str = extra.getString("data2");
-            tv_title_read.setText(str);
+        // MainActivity에서 전달한 번들 저장
+        Bundle bundle = getArguments();
+        if(bundle != null) {
+            String id = bundle.getString("id");
+            tv_test.setText(id);
+            Log.v("번들 값", id);
         }
 
-        // 일기 가져오기(DB 연동)
-        /*try {
-            String result;
 
-            RegisterReaddiaryActivity task = new RegisterReaddiaryActivity();
-            result = task.execute(id).get();
-            Log.v("return", result);
-
-            tv_title_read.setText(result);
-            tv_content_read.setText(result);
-
-        } catch (Exception e) {
-        }
-*/
         return v;
 
     }
-
-
 }
