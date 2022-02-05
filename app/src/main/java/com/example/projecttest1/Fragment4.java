@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.CalendarMode;
@@ -60,7 +61,7 @@ public class Fragment4 extends Fragment {
 
         // 달력의 기본 설정
         materialCalendarView.state().edit()
-                .setFirstDayOfWeek(Calendar.SUNDAY)
+//                .setFirstDayOfWeek(Calendar.SUNDAY)
                 .setMinimumDate(CalendarDay.from(2017, 0, 1))
                 .setMaximumDate(CalendarDay.from(2030, 11, 31))
                 .setCalendarDisplayMode(CalendarMode.MONTHS)
@@ -85,15 +86,17 @@ public class Fragment4 extends Fragment {
         
         );
 
-        materialCalendarView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                tv_content_read.setVisibility(View.VISIBLE);
-            }
-        });
+            materialCalendarView.setOnDateChangedListener(new OnDateSelectedListener() {
+                @Override
+                public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
+                    int year = widget.getSelectedDate().getYear();
+                    int month = widget.getSelectedDate().getMonth();
+                    int day = widget.getSelectedDate().getDay();
 
-
-
+                    String today = year + "년 " + month + "월 " + day + "일";
+                    Toast.makeText(getActivity(), today, Toast.LENGTH_SHORT).show(); // 선택한 날짜 토스트 출력
+                }
+            });
 
 
 
