@@ -98,6 +98,12 @@ public class MainActivity extends AppCompatActivity {
 
                 } else if (item.getItemId() == R.id.tab5) {
                     getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment5).commit();
+
+                    Bundle bundle = new Bundle();
+
+                    bundle.putString("id",id);
+
+                    fragment5.setArguments(bundle);
                 }
                 return true;
             }

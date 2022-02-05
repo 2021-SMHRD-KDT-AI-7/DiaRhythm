@@ -39,10 +39,13 @@ public class Fragment5 extends Fragment {
 
         ArrayAdapter adapter = new ArrayAdapter(getActivity(),R.layout.info,info);
         lv.setAdapter(adapter);
+
+        Bundle bundle = getArguments();
+
         try {
             RegisterInfoActivity task = new RegisterInfoActivity();
 
-            Bundle bundle = getArguments();
+
 
             String id = bundle.getString("id");
 
@@ -56,7 +59,7 @@ public class Fragment5 extends Fragment {
 
         }
 
-        info.add("내가 쓴 일기 횟수" + result);
+        info.add("내가 쓴 일기 횟수         " +result_rep);
         info.add("연속 작성 횟수");
         info.add("공지사항");
         info.add("개인정보약관동의");
