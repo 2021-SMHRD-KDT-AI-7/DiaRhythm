@@ -49,13 +49,15 @@ public class Fragment2 extends Fragment {
 
 
         try {
-            RegisterEmotionActivity task = new RegisterEmotionActivity();
+
 
             Bundle bundle = getArguments();
             String id = bundle.getString("id");
+            Log.v("프래그먼트2의 id값은",id);
 
+            RegisterEmotionActivity task = new RegisterEmotionActivity();
             result = task.execute(id).get();
-            Log.v("MY", result);
+            Log.v("그래프 데이터", result);
             result_rep = result.replace(" ", "");
 
             tv_test1.setText(result);
