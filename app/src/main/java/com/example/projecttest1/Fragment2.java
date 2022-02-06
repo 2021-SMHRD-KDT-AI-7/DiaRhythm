@@ -6,9 +6,11 @@ import android.os.Bundle;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.LineChart;
@@ -35,12 +37,42 @@ import java.util.List;
 
 public class Fragment2 extends Fragment {
     LineChart lineChart;
+    String result;
+    String result_rep;
+    TextView tv_test1;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_2, container, false);
         lineChart = v.findViewById(R.id.linechart);
-//        ArrayList<String> X_date = new ArrayList<>();
+        tv_test1 = v.findViewById(R.id.tv_test1);
+
+
+        try {
+            RegisterEmotionActivity task = new RegisterEmotionActivity();
+
+            Bundle bundle = getArguments();
+            String id = bundle.getString("id");
+
+            result = task.execute(id).get();
+            Log.v("MY", result);
+            result_rep = result.replace(" ", "");
+
+            tv_test1.setText(result);
+
+        }catch (Exception e){
+
+        }
+        ArrayList<Integer> y_date = new ArrayList<>();
+        y_date.add(3);
+        y_date.add(6);
+        y_date.add(3);
+        y_date.add(14);
+        y_date.add(18);
+        y_date.add(20);
+        y_date.add(4);
+
+        //        ArrayList<String> X_date = new ArrayList<>();
 //        X_date.add("월");
 //        X_date.add("화");
 //        X_date.add("수");
@@ -48,15 +80,6 @@ public class Fragment2 extends Fragment {
 //        X_date.add("금");
 //        X_date.add("토");
 //        X_date.add("일");
-
-        ArrayList<Integer> y_date = new ArrayList<>();
-        y_date.add(0);
-        y_date.add(6);
-        y_date.add(3);
-        y_date.add(14);
-        y_date.add(18);
-        y_date.add(20);
-        y_date.add(4);
 
         // X축 생성
         XAxis xAxis = lineChart.getXAxis();
@@ -74,8 +97,9 @@ public class Fragment2 extends Fragment {
         YAxis yAxisRight = lineChart.getAxisRight();  // y축 오른쪽
 
         String happy = "행복지수";
-//        yAxisLeft.setAxisMinimum(0);
-//        yAxisLeft.setAxisMaximum(30);
+        // y축 min max 값 구하는 법
+        yAxisLeft.setAxisMinimum(0);
+        yAxisLeft.setAxisMaximum(100);
         yAxisLeft.setTextSize(15);
         yAxisLeft.setValueFormatter(new IndexAxisValueFormatter(Collections.singleton(happy)));
         yAxisLeft.setTextColor((Color.parseColor("#fafafa")));
@@ -107,7 +131,7 @@ public class Fragment2 extends Fragment {
         dataset.setColors(ColorTemplate.COLORFUL_COLORS);
         //dataset.setDrawCubic(true); //선 둥글게 만들기
         //dataset.setDrawFilled(true); //그래프 밑부분 색칠
-        dataset.setDrawHighlightIndicators(true); // 눌렀을때 라인 표시
+//        dataset.setDrawHighlightIndicators(true); // 눌렀을때 라인 표시
 
 //        dataset.setFormSize(20);
 
