@@ -1,8 +1,12 @@
 package com.example.projecttest1;
 
+import static java.lang.Integer.*;
+
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 
+import androidx.annotation.RequiresApi;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
@@ -30,8 +34,13 @@ import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.lang.reflect.Array;
+import java.text.SimpleDateFormat;
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -41,6 +50,8 @@ public class Fragment2 extends Fragment {
     String result_rep;
     TextView tv_test1;
     TextView tv_test2;
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -48,7 +59,6 @@ public class Fragment2 extends Fragment {
         lineChart = v.findViewById(R.id.linechart);
         tv_test1 = v.findViewById(R.id.tv_test1);
         tv_test2 = v.findViewById(R.id.tv_test2);
-
 
         try {
             RegisterEmotionActivity task = new RegisterEmotionActivity();
@@ -60,44 +70,52 @@ public class Fragment2 extends Fragment {
             Log.v("MY", result);
             result_rep = result.replace(" ", "");
 
-            String num1 = result_rep.substring(0,57);
-            String emotion1_d = num1.substring(21,31);
-            String emotion1_s = num1.substring(53,55);
-
-            String num2 = result_rep.substring(57,113);
-            String emotion2_d = num1.substring(77,87);
-            String emotion2_s = num1.substring(53,55);
-
-            String num3 = result_rep.substring(113,169);
-            String emotion3_d = num1.substring(21,31);
-            String emotion3_s = num1.substring(53,55);
-
-            String num4 = result_rep.substring(169,225);
-            String emotion4_d = num1.substring(21,31);
-            String emotion4_s = num1.substring(53,55);
-
-            String num5 = result_rep.substring(225,281);
-            String emotion5_d = num1.substring(21,31);
-            String emotion5_s = num1.substring(53,55);
-
-            String num6 = result_rep.substring(281,337);
-            String emotion6_d = num1.substring(21,31);
-            String emotion6_s = num1.substring(53,55);
-
-            String num7 = result_rep.substring(337,393);
-            String emotion7_d = num1.substring(21,31);
-            String emotion7_s = num1.substring(53,55);
-
-
-
             tv_test2.setText(result);
 
-            tv_test1.setText(emotion1_s);
+            String num1 = result_rep.substring(0, 57);
+            String emotion1_d = num1.substring(21, 31);
+            String emotion1_s = num1.substring(53, 55);
 
-        }catch (Exception e){
+            String num2 = result_rep.substring(57, 113);
+            String emotion2_d = result_rep.substring(77,87);
+            String emotion2_s = result_rep.substring(109,111);
+
+            String num3 = result_rep.substring(113, 169);
+            String emotion3_d = result_rep.substring(133, 143);
+            String emotion3_s = result_rep.substring(165, 167);
+
+            String num4 = result_rep.substring(169, 225);
+            String emotion4_d = result_rep.substring(189, 199);
+            String emotion4_s = result_rep.substring(221, 223);
+
+            String num5 = result_rep.substring(225, 281);
+            String emotion5_d = result_rep.substring(245, 255);
+            String emotion5_s = result_rep.substring(277, 279);
+
+            String num6 = result_rep.substring(281, 337);
+            String emotion6_d = result_rep.substring(301, 311);
+            String emotion6_s = result_rep.substring(333, 335);
+
+            String num7 = result_rep.substring(337, 393);
+            String emotion7_d = result_rep.substring(357, 367);
+            String emotion7_s = result_rep.substring(389, 391);
+
+
+//
+//            SimpleDateFormat newDtFormat = new SimpleDateFormat("yyyy-MM-dd");
+//
+//            Date formatDate = newDtFormat.parse(emotion7_d);
+//
+//            tv_test1.setText(formatDate);
+
+        } catch (Exception e) {
 
         }
-        ArrayList<Integer> y_date = new ArrayList<>();
+
+
+
+
+       ArrayList<Integer> y_date = new ArrayList<>();
         y_date.add(3);
         y_date.add(6);
         y_date.add(3);
@@ -139,7 +157,6 @@ public class Fragment2 extends Fragment {
         yAxisLeft.setTextColor((Color.parseColor("#fafafa")));
 
 
-
 //        yAxisLeft.setTextColor(ContextCompat.getColor(getContext(), R.color.black)); //Y축 텍스트 컬러 설정
 //        yAxisLeft.setGridColor(ContextCompat.getColor(getContext(), R.color.white)); // Y축 줄의 컬러 설정
 
@@ -158,7 +175,7 @@ public class Fragment2 extends Fragment {
         entries.add(new Entry(5, y_date.get(5)));
         entries.add(new Entry(6, y_date.get(6)));
 
-        LineDataSet dataset = new LineDataSet(entries,null);
+        LineDataSet dataset = new LineDataSet(entries, null);
         // 차트 만들기
         dataset.setLineWidth(4);
 //        dataset.setColor(Color.parseColor("#ffa7c4"));
@@ -168,7 +185,6 @@ public class Fragment2 extends Fragment {
 //        dataset.setDrawHighlightIndicators(true); // 눌렀을때 라인 표시
 
 //        dataset.setFormSize(20);
-
 
 
         LineData lineData = new LineData(dataset);
@@ -183,8 +199,6 @@ public class Fragment2 extends Fragment {
 //        Description description = new Description(); // 차트 주석 생성
 //        description.setText(""); // 주석 미기입
 //        lineChart.setDescription(description); // 주석 그리기
-
-
 
 
         return v;
