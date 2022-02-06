@@ -40,12 +40,14 @@ public class Fragment2 extends Fragment {
     String result;
     String result_rep;
     TextView tv_test1;
+    TextView tv_test2;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_2, container, false);
         lineChart = v.findViewById(R.id.linechart);
         tv_test1 = v.findViewById(R.id.tv_test1);
+        tv_test2 = v.findViewById(R.id.tv_test2);
 
 
         try {
@@ -60,7 +62,39 @@ public class Fragment2 extends Fragment {
             Log.v("그래프 데이터", result);
             result_rep = result.replace(" ", "");
 
-            tv_test1.setText(result);
+            String num1 = result_rep.substring(0,57);
+            String emotion1_d = num1.substring(21,31);
+            String emotion1_s = num1.substring(53,55);
+
+            String num2 = result_rep.substring(57,113);
+            String emotion2_d = num1.substring(77,87);
+            String emotion2_s = num1.substring(53,55);
+
+            String num3 = result_rep.substring(113,169);
+            String emotion3_d = num1.substring(21,31);
+            String emotion3_s = num1.substring(53,55);
+
+            String num4 = result_rep.substring(169,225);
+            String emotion4_d = num1.substring(21,31);
+            String emotion4_s = num1.substring(53,55);
+
+            String num5 = result_rep.substring(225,281);
+            String emotion5_d = num1.substring(21,31);
+            String emotion5_s = num1.substring(53,55);
+
+            String num6 = result_rep.substring(281,337);
+            String emotion6_d = num1.substring(21,31);
+            String emotion6_s = num1.substring(53,55);
+
+            String num7 = result_rep.substring(337,393);
+            String emotion7_d = num1.substring(21,31);
+            String emotion7_s = num1.substring(53,55);
+
+
+
+            tv_test2.setText(result);
+
+            tv_test1.setText(emotion1_s);
 
         }catch (Exception e){
 
