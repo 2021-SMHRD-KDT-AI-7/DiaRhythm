@@ -32,7 +32,7 @@ public class RegisterwriteActivity extends AsyncTask<String, Void, String> {
             OutputStreamWriter osw = new OutputStreamWriter(conn.getOutputStream(),"UTF-8");
 
             // 전송할 데이터. GET 방식으로 작성
-            sendMsg = "title=" + strings[0] + "&content=" + strings[1] + "&id=" + strings[2];
+            sendMsg = "title=" + strings[0] + "&content=" + strings[1] + "&id=" + strings[2] +"&deep_emotion="+strings[3];
 
             Log.v("data ", sendMsg);
             System.out.println(sendMsg);
