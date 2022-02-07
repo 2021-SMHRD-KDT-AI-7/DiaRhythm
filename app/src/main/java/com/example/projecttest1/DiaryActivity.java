@@ -10,12 +10,24 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import java.util.HashMap;
+import java.util.Map;
+
 public class DiaryActivity extends AppCompatActivity {
 
     EditText et_content;
     EditText et_title;
     Button btn_submit;
     Button btn_cancel;
+    RequestQueue queue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +40,7 @@ public class DiaryActivity extends AppCompatActivity {
         btn_cancel = findViewById(R.id.btn_write_cancel);
 
 
+        queue = Volley.newRequestQueue(getApplicationContext());
         // MainActivity 의 id 값 가져오기
         Bundle extras = getIntent().getExtras();
         String id = extras.getString("string");
@@ -35,19 +48,59 @@ public class DiaryActivity extends AppCompatActivity {
         btn_submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //flask서버의 ip주소로 변경할 것
+                //뒤에 라우터 경로 작성할 것
+                String flask_url = "http://121.147.52.194:80/emotions";
 
 
-                if(et_title.getText().length() !=0 && et_content.getText().length()!=0){
+                StringRequest request = new StringRequest(Request.Method.POST, flask_url,
+                        new Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String response) {
+
+                                Toast.makeText(getApplicationContext(),response,Toast.LENGTH_SHORT).show();
+                                //Flask서버의 return문에 작성한 결과값을 response변수를 통해서 접근
+                                Log.v("Flask응답값>> ", response);
+
+                            }
+
+                        },
+                        new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+
+                            }
+                        }){
+                    @Override
+                    protected Map<String, String> getParams() throws AuthFailureError {
+
+                        Map<String, String> params = new HashMap<>();
+
+                        //flask서버로 전달할 데이터를
+                        params.put("num1","");
+
+                        // params.put("num2","2");
+
+                        return params;
+                    }
+                };
+
+                queue.add(request);
+
+
+
+
+                if (et_title.getText().length() != 0 && et_content.getText().length() != 0) {
                     try {
                         String result;
                         String title = et_title.getText().toString();
                         String content = et_content.getText().toString();
                         RegisterwriteActivity task = new RegisterwriteActivity();
-                        result = task.execute(title,content,id).get();
+                        result = task.execute(title, content, id).get();
 
                         Log.v("return", result);
-                        Intent intent = new Intent(getApplicationContext(),MainActivity.class);
-                        intent.putExtra("string",id);
+                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                        intent.putExtra("string", id);
                         startActivity(intent);
                         finish();
 
@@ -55,20 +108,14 @@ public class DiaryActivity extends AppCompatActivity {
 
                     }
 
-                }else if(et_title.getText().toString().length()==0){
-                        Toast.makeText(getApplicationContext(),"제목을 입력해주세요",Toast.LENGTH_SHORT).show();
+                } else if (et_title.getText().toString().length() == 0) {
+                    Toast.makeText(getApplicationContext(), "제목을 입력해주세요", Toast.LENGTH_SHORT).show();
 
-                }else if(et_content.getText().toString().length()==0){
+                } else if (et_content.getText().toString().length() == 0) {
 
-                    Toast.makeText(getApplicationContext(),"내용을 입력해주세요", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "내용을 입력해주세요", Toast.LENGTH_SHORT).show();
                 }
-
-
-
-
-
             }
-
         });
 
 
@@ -77,13 +124,11 @@ public class DiaryActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(DiaryActivity.this, MainActivity.class);
-                intent.putExtra("string",id);
+                intent.putExtra("string", id);
                 startActivity(intent);
                 finish();
             }
         });
-
-
 
 
     }
