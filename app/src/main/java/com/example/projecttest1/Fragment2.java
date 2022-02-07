@@ -34,6 +34,8 @@ import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.lang.reflect.Array;
+import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
@@ -50,7 +52,9 @@ public class Fragment2 extends Fragment {
     String result_rep;
     TextView tv_test1;
     TextView tv_test2;
+    String num1, num_1, num2, num_2, num3, num_3, num4, num_4, num5, num_5, num6, num_6, num7, num_7;
 
+    int a;
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -59,124 +63,64 @@ public class Fragment2 extends Fragment {
         lineChart = v.findViewById(R.id.linechart);
         tv_test1 = v.findViewById(R.id.tv_test1);
         tv_test2 = v.findViewById(R.id.tv_test2);
-
+        // DB에서 받아온 문자열 데이터를 필요한 규격에 맞게 슬라이싱
         try {
-
-
             Bundle bundle = getArguments();
             String id = bundle.getString("id");
-            Log.v("프래그먼트2의 id값은",id);
+            Log.v("프래그먼트2의 id값은", id);
 
             RegisterEmotionActivity task = new RegisterEmotionActivity();
             result = task.execute(id).get();
             Log.v("그래프 데이터", result);
-            result_rep = result.replace("    ", "");
-
-            //맨 처음, 맨 마지막 대괄호 제거
-            result = result_rep.replace("[","");
-            result = result.replace("]","");
-            Log.v("return", result);
-
-            // toString 을 " "(공백)을 기준으로 잘라 array 배열에 저장하기
-            String[] array = result.split(" ");
-            Log.v("array값",array[0]);
-            Log.v("array값",array[1]);
 
             tv_test2.setText(result);
 
-            String num1 = result_rep.substring(0, 57);
-            String emotion1_d = num1.substring(21, 31);
-            String emotion1_s = num1.substring(53, 55);
+            num1 = result.substring(10, 15);
+            num_1 = result.substring(25, 27);
 
-            String num2 = result_rep.substring(57, 113);
-            String emotion2_d = result_rep.substring(77,87);
-            String emotion2_s = result_rep.substring(109,111);
+            num2 = result.substring(34, 40);
+            num_2 = result.substring(49, 51);
 
-            String num3 = result_rep.substring(113, 169);
-            String emotion3_d = result_rep.substring(133, 143);
-            String emotion3_s = result_rep.substring(165, 167);
+            num3 = result.substring(58, 64);
+            num_3 = result.substring(73, 75);
 
-            String num4 = result_rep.substring(169, 225);
-            String emotion4_d = result_rep.substring(189, 199);
-            String emotion4_s = result_rep.substring(221, 223);
+            num4 = result.substring(82, 88);
+            num_4 = result.substring(97, 99);
 
-            String num5 = result_rep.substring(225, 281);
-            String emotion5_d = result_rep.substring(245, 255);
-            String emotion5_s = result_rep.substring(277, 279);
+            num5 = result.substring(106, 112);
+            num_5 = result.substring(121, 123);
 
-            String num6 = result_rep.substring(281, 337);
-            String emotion6_d = result_rep.substring(301, 311);
-            String emotion6_s = result_rep.substring(333, 335);
+            num6 = result.substring(130, 136);
+            num_6 = result.substring(145, 147);
 
-            String num7 = result_rep.substring(337, 393);
-            String emotion7_d = result_rep.substring(357, 367);
-            String emotion7_s = result_rep.substring(389, 391);
+            num7 = result.substring(154, 160);
+            num_7 = result.substring(169, 171);
 
-
-//
-//            SimpleDateFormat newDtFormat = new SimpleDateFormat("yyyy-MM-dd");
-//
-//            Date formatDate = newDtFormat.parse(emotion7_d);
-//
-//            tv_test1.setText(formatDate);
 
         } catch (Exception e) {
 
         }
 
+        // 일주일 감정 문자열값을 emotions 배열에 넣고 포문으로 돌려 일치하는 값에 수치화
+        String emotions[] = {num_1, num_2, num_3, num_4, num_5, num_6, num_7};
+        ArrayList<Integer> y_date = new ArrayList<>();
 
+        for (int i = 0; i <= 6; i++) {
 
-
-       ArrayList<Integer> y_date = new ArrayList<>();
-        y_date.add(3);
-        y_date.add(6);
-        y_date.add(3);
-        y_date.add(14);
-        y_date.add(18);
-        y_date.add(20);
-        y_date.add(4);
-
-        //        ArrayList<String> X_date = new ArrayList<>();
-//        X_date.add("월");
-//        X_date.add("화");
-//        X_date.add("수");
-//        X_date.add("목");
-//        X_date.add("금");
-//        X_date.add("토");
-//        X_date.add("일");
-
-        // X축 생성
-        XAxis xAxis = lineChart.getXAxis();
-        //xAxis.enableGridDashedLine(10, 10, 10); // 그리드라인
-        xAxis.setTextSize(15);
-//        xAxis.setTextColor((Color.parseColor("#304ffe")));
-        xAxis.setTextColor((Color.parseColor("#FFFFFF")));
-
-        final String[] weekdays = {"월", "화", "수", "목", "금", "토", "일"};
-        xAxis.setValueFormatter(new IndexAxisValueFormatter(weekdays));
-
-
-        // y축 생성
-        YAxis yAxisLeft = lineChart.getAxisLeft(); // y축 왼쪽
-        YAxis yAxisRight = lineChart.getAxisRight();  // y축 오른쪽
-
-        String happy = "행복지수";
-        // y축 min max 값 구하는 법
-        yAxisLeft.setAxisMinimum(0);
-        yAxisLeft.setAxisMaximum(100);
-        yAxisLeft.setTextSize(15);
-        yAxisLeft.setValueFormatter(new IndexAxisValueFormatter(Collections.singleton(happy)));
-        yAxisLeft.setTextColor((Color.parseColor("#fafafa")));
-
-
-//        yAxisLeft.setTextColor(ContextCompat.getColor(getContext(), R.color.black)); //Y축 텍스트 컬러 설정
-//        yAxisLeft.setGridColor(ContextCompat.getColor(getContext(), R.color.white)); // Y축 줄의 컬러 설정
-
-        yAxisRight.setDrawLabels(false);
-        yAxisRight.setDrawAxisLine(false);
-        yAxisRight.setDrawGridLines(false);
-//        // y축 오른쪽 활성화 제거
-
+            if (emotions[i].equals("기쁨")) {
+                a = 80;
+            } else if (emotions[i].equals("당황")) {
+                a = 60;
+            } else if (emotions[i].equals("불안")) {
+                a = 40;
+            } else if (emotions[i].equals("분노")) {
+                a = 30;
+            } else if (emotions[i].equals("상처")) {
+                a = 20;
+            } else if (emotions[i].equals("슬픔")) {
+                a = 10;
+            }y_date.add(a);
+        }
         ArrayList<Entry> entries = new ArrayList<>();
         // 차트 데이터값 넣기
         entries.add(new Entry(0, y_date.get(0)));
@@ -187,39 +131,69 @@ public class Fragment2 extends Fragment {
         entries.add(new Entry(5, y_date.get(5)));
         entries.add(new Entry(6, y_date.get(6)));
 
+
+
+        // X축 생성
+        XAxis xAxis = lineChart.getXAxis();
+        //xAxis.enableGridDashedLine(10, 10, 10);  그리드라인
+        xAxis.setTextSize(12);
+        //xAxis.setTextColor((Color.parseColor("#304ffe")));
+        xAxis.setTextColor((Color.parseColor("#FFFFFF")));
+
+        final String[] weekdays = {num1, num2, num3, num4, num5, num6, num7};
+        xAxis.setValueFormatter(new IndexAxisValueFormatter(weekdays));
+
+        // y축 생성
+        YAxis yAxisLeft = lineChart.getAxisLeft(); // y축 왼쪽
+        YAxis yAxisRight = lineChart.getAxisRight();  // y축 오른쪽
+
+        String happy = "행복지수";
+        // y축 min max 값 구하는 법
+        yAxisLeft.setAxisMinimum(0);
+        yAxisLeft.setAxisMaximum(100);
+        yAxisLeft.setTextSize(12);
+        yAxisLeft.setValueFormatter(new IndexAxisValueFormatter(Collections.singleton(happy)));
+        yAxisLeft.setTextColor((Color.parseColor("#fafafa")));
+
+
+        //yAxisLeft.setTextColor(ContextCompat.getColor(getContext(), R.color.black)); //Y축 텍스트 컬러 설정
+        //yAxisLeft.setGridColor(ContextCompat.getColor(getContext(), R.color.white)); // Y축 줄의 컬러 설정
+
+        // y축 오른쪽 활성화 제거
+        yAxisRight.setDrawLabels(false);
+        yAxisRight.setDrawAxisLine(false);
+        yAxisRight.setDrawGridLines(false);
+
+
         LineDataSet dataset = new LineDataSet(entries, null);
         // 차트 만들기
-        dataset.setLineWidth(4);
-//        dataset.setColor(Color.parseColor("#ffa7c4"));
+        dataset.setLineWidth(5);
+        //dataset.setColor(Color.parseColor("#ffa7c4"));
         dataset.setColors(ColorTemplate.COLORFUL_COLORS);
         //dataset.setDrawCubic(true); //선 둥글게 만들기
         //dataset.setDrawFilled(true); //그래프 밑부분 색칠
-//        dataset.setDrawHighlightIndicators(true); // 눌렀을때 라인 표시
-
-//        dataset.setFormSize(20);
-
+        //dataset.setDrawHighlightIndicators(true); // 눌렀을때 라인 표시
+        //dataset.setFormSize(20);
 
         LineData lineData = new LineData(dataset);
-        // 차트 그리기
+        //차트 그리기
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
-
         lineChart.setData(lineData);
         lineChart.animateY(2000);
         lineChart.setDoubleTapToZoomEnabled(false);
 
-//        lineChart.setDrawGridBackground(true); // 배경에 점선 표시
-//        Description description = new Description(); // 차트 주석 생성
-//        description.setText(""); // 주석 미기입
-//        lineChart.setDescription(description); // 주석 그리기
+        //lineChart.setDrawGridBackground(true); // 배경에 점선 표시
+        //Description description = new Description(); // 차트 주석 생성
+        //description.setText(""); // 주석 미기입
+        //lineChart.setDescription(description); // 주석 그리기
+
 
 
         return v;
 
-
     }
 
 }
-
 
 
 
