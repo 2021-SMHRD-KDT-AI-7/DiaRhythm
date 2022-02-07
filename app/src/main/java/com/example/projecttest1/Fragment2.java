@@ -70,7 +70,17 @@ public class Fragment2 extends Fragment {
             RegisterEmotionActivity task = new RegisterEmotionActivity();
             result = task.execute(id).get();
             Log.v("그래프 데이터", result);
-            result_rep = result.replace(" ", "");
+            result_rep = result.replace("    ", "");
+
+            //맨 처음, 맨 마지막 대괄호 제거
+            result = result_rep.replace("[","");
+            result = result.replace("]","");
+            Log.v("return", result);
+
+            // toString 을 " "(공백)을 기준으로 잘라 array 배열에 저장하기
+            String[] array = result.split(" ");
+            Log.v("array값",array[0]);
+            Log.v("array값",array[1]);
 
             tv_test2.setText(result);
 
