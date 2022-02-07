@@ -28,6 +28,7 @@ public class DiaryActivity extends AppCompatActivity {
     Button btn_submit;
     Button btn_cancel;
     RequestQueue queue;
+    String emotion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,9 +59,10 @@ public class DiaryActivity extends AppCompatActivity {
                             @Override
                             public void onResponse(String response) {
 
-                                Toast.makeText(getApplicationContext(),response,Toast.LENGTH_SHORT).show();
+
                                 //Flask서버의 return문에 작성한 결과값을 response변수를 통해서 접근
                                 Log.v("Flask응답값>> ", response);
+                                emotion = response;
 
                             }
 
@@ -98,7 +100,8 @@ public class DiaryActivity extends AppCompatActivity {
                         String title = et_title.getText().toString();
                         String content = et_content.getText().toString();
                         RegisterwriteActivity task = new RegisterwriteActivity();
-                        result = task.execute(title, content, id).get();
+
+                        result = task.execute(title, content, id, emotion).get();
 
                         Log.v("return", result);
                         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
