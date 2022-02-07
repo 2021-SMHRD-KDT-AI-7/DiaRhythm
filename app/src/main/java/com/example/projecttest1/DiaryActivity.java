@@ -59,11 +59,10 @@ public class DiaryActivity extends AppCompatActivity {
                             @Override
                             public void onResponse(String response) {
 
-
                                 //Flask서버의 return문에 작성한 결과값을 response변수를 통해서 접근
                                 Log.v("Flask응답값>> ", response);
                                 emotion = response;
-
+                                finish();
                             }
 
                         },
@@ -79,8 +78,8 @@ public class DiaryActivity extends AppCompatActivity {
                         Map<String, String> params = new HashMap<>();
 
                         //flask서버로 전달할 데이터를
-                        params.put("num1", String.valueOf(et_title));
-                        params.put("num2", String.valueOf(et_content));
+                        params.put("num1", et_title.getText().toString());
+                        params.put("num2", et_content.getText().toString());
                         params.put("num3", id);
 
                         // params.put("num2","2");
