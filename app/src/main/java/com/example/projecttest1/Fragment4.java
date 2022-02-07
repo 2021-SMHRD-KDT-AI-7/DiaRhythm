@@ -23,6 +23,7 @@ import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
 
 import java.util.Collections;
+import java.util.concurrent.ExecutionException;
 
 
 public class Fragment4 extends Fragment {
@@ -75,7 +76,13 @@ public class Fragment4 extends Fragment {
 
         // 로그인한 사람이 이전에 작성한 날짜에 점찍기
         RegisterCalandarActivity task2 = new RegisterCalandarActivity();
-        result = task2.execute(id).get().replace("    ", "");
+        try {
+            result = task2.execute(id).get().replace("    ", "");
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         Log.v("return", result);
 
 
