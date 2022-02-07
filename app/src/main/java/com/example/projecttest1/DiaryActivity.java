@@ -80,7 +80,7 @@ public class DiaryActivity extends AppCompatActivity {
 
                         //flask서버로 전달할 데이터를
                         params.put("num1", String.valueOf(et_title));
-                        params.put("num2", String.valueOf(et_content));
+                        params.put("num2",String.valueOf(et_content));
                         params.put("num3", id);
 
                         // params.put("num2","2");
@@ -101,7 +101,7 @@ public class DiaryActivity extends AppCompatActivity {
                         String content = et_content.getText().toString();
                         RegisterwriteActivity task = new RegisterwriteActivity();
 
-                        result = task.execute(title, content, id, emotion).get();
+                        result = task.execute(title, content, id).get();
 
                         Log.v("return", result);
                         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
