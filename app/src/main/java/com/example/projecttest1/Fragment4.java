@@ -74,10 +74,10 @@ public class Fragment4 extends Fragment {
         materialCalendarView = v.findViewById(R.id.calendarView);
 
         // 로그인한 사람이 이전에 작성한 날짜에 점찍기
-        RegisterCalandarActivity task2 = new RegisterCalandarActivity();
+/*        RegisterCalandarActivity task2 = new RegisterCalandarActivity();
         result = task2.execute(id).get().replace("    ", "");
         Log.v("return", result);
-
+*/
 
         // 달력의 기본 설정
         materialCalendarView.state().edit()
@@ -86,10 +86,12 @@ public class Fragment4 extends Fragment {
                 .setMaximumDate(CalendarDay.from(2030, 11, 31))
                 .setCalendarDisplayMode(CalendarMode.MONTHS)
                 .commit();
+        String app = "2000";
+        int app1 = 2000;
 
         // Decorator 객체 선언
         //eventDecorator = new EventDecorator(Color.GREEN, Collections.singleton(CalendarDay.today()));   // 특정일을 녹색 점 포인트 표시!
-        eventDecorator = new EventDecorator(Color.GREEN, Collections.singleton(CalendarDay. from(2022,01,02)));
+        eventDecorator = new EventDecorator(Color.GREEN, Collections.singleton(CalendarDay. from(app1,01,02)));
         sundayDecorator = new SundayDecorator();
         saturdayDecorator = new SaturdayDecorator();
 
