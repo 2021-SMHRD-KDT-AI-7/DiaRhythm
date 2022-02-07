@@ -74,44 +74,36 @@ public class MainActivity extends AppCompatActivity {
         bnview.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+                // Activity -> fragment 로 데이터를 전달 할 Bundle 클래스 생성
+                Bundle bundle = new Bundle();
+                // bundle 변수에 id 값을 넣고 "id" 라는 key값 부여(값을 넘겨받을 때 key값으로 구분)
+                bundle.putString("id",id);
                 
                 // 해당 탭 클릭 시 화면 전환
                 if (item.getItemId() == R.id.tab1) {
                     getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment1).commit();
+                    fragment1.setArguments(bundle);
 
                 } else if (item.getItemId() == R.id.tab2) {
                     getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment2).commit();
-                    // Activity -> fragment 로 데이터를 전달 할 Bundle 클래스 생성
-                    Bundle bundle = new Bundle();
-                    // bundle 변수에 id 값을 넣고 "text" 라는 key값 부여(값을 넘겨받을 때 key값으로 구분)
-                    bundle.putString("id",id);
 
                     fragment2.setArguments(bundle);
 
                 } else if (item.getItemId() == R.id.tab3) {
                     getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment3).commit();
 
+                    fragment3.setArguments(bundle);
+
                 } else if (item.getItemId() == R.id.tab4) {
                     getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment4).commit();
 
-                    // Activity -> fragment 로 데이터를 전달 할 Bundle 클래스 생성
-                    Bundle bundle = new Bundle();
-                    // bundle 변수에 id 값을 넣고 "text" 라는 key값 부여(값을 넘겨받을 때 key값으로 구분)
-                    bundle.putString("id",id);
-
-                    // id 값이 저장된 bundle을  Arguments에 담아 fragment4로 넘겨주기
                     fragment4.setArguments(bundle);
 
                 } else if (item.getItemId() == R.id.tab5) {
                     getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment5).commit();
-                    // Activity -> fragment 로 데이터를 전달 할 Bundle 클래스 생성
-                    Bundle bundle = new Bundle();
-                    // bundle 변수에 id 값을 넣고 "text" 라는 key값 부여(값을 넘겨받을 때 key값으로 구분)
-                    bundle.putString("id",id);
 
-                    // id 값이 저장된 bundle을
                     fragment5.setArguments(bundle);
-
 
                 }
                 return true;

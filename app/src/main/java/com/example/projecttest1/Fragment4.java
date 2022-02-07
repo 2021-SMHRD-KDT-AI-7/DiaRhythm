@@ -1,5 +1,6 @@
 package com.example.projecttest1;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 
@@ -7,22 +8,21 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ScrollView;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.CalendarMode;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
 
-import org.w3c.dom.Text;
-
-import java.util.Calendar;
 import java.util.Collections;
 
 
@@ -30,6 +30,14 @@ public class Fragment4 extends Fragment {
 
     TextView tv_title_read;
     TextView tv_content_read ;
+    ImageView img_read1;
+    ImageView img_read2;
+    ImageView img_read3;
+    TextView tv_read_content;
+    TextView tv_read_title;
+    ImageView img_letter_open;
+
+    String result;
 
     // 캘린더 변수
     MaterialCalendarView materialCalendarView;
@@ -48,14 +56,21 @@ public class Fragment4 extends Fragment {
 
 //        tv_content_read = v.findViewById(R.id.tv_content_read);
 //        tv_title_read = v.findViewById(R.id.tv_title_read);
+        img_read1 = v.findViewById(R.id.img_read1);
+        img_read2 = v.findViewById(R.id.img_read2);
+        img_read3 = v.findViewById(R.id.img_read1);
+        tv_read_content = v.findViewById(R.id.tv_read_content);
+        tv_read_title = v.findViewById(R.id.tv_read_title);
+        img_letter_open = v.findViewById(R.id.img_letter_open);
+
 
         // MainActivity에서 전달한 번들 저장
         Bundle bundle = getArguments();
-        if(bundle != null) {
+
             String id = bundle.getString("id");
             //tv_test.setText(id);
             Log.v("번들 값", id);
-        }
+
 
         materialCalendarView = v.findViewById(R.id.calendarView);
 
@@ -98,7 +113,56 @@ public class Fragment4 extends Fragment {
                 }
             });
 
+        img_read1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
+                try {
+                    img_letter_open.setVisibility(View.VISIBLE);
+
+                    Glide.with(v.getContext()).load(R.drawable.letter_gif).into(img_letter_open);
+
+                    Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            img_letter_open.setVisibility(View.INVISIBLE);
+                        }
+                    }, 2500);
+
+
+
+
+                    RegisterReadActivity task = new RegisterReadActivity();
+                    result = task.execute(id).get().replace("    ", "");
+                    Log.v("return", result);
+
+                    //맨 처음, 맨 마지막 대괄호 제거
+                    result = result.replace("[","");
+                    result = result.replace("]","");
+                    Log.v("return", result);
+
+                    // toString 을 " "(공백)을 기준으로 잘라 array 배열에 저장하기
+                    String[] array = result.split(" ");
+
+                    tv_read_title.setText((array[8]));
+                    tv_read_content.setText(array[9]);
+
+
+                } catch (Exception e) {
+                }
+
+
+
+            }
+        });
+        
+        img_read2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                tv_read_title.setText("ㅆ");
+            }
+        });
 
 
         return v;
