@@ -28,7 +28,7 @@ public class RegisterCalandarActivity extends AsyncTask<String, Void, String> {
             OutputStreamWriter osw = new OutputStreamWriter(conn.getOutputStream());
 
             // 전송할 데이터. GET 방식으로 작성
-            sendMsg = "id=" + strings[0] + "";
+            sendMsg = "id=" + strings[0];
 
             osw.write(sendMsg);
             osw.flush();
