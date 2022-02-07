@@ -51,12 +51,7 @@ public class Fragment4 extends Fragment {
     SaturdayDecorator saturdayDecorator;
     ArrayList<EventDecorator> ed2 = new ArrayList<EventDecorator>();
 
-    // 전역 변수
-    String[] array2 = new String[200];
-    String[] array3 = new String[200];
-    ArrayList<String> arr_date = new ArrayList<String>();
-    ArrayList<Integer> arr_date2 = new ArrayList<Integer>();
-    int k = 0;
+
 
     @Nullable
     @Override
@@ -73,6 +68,13 @@ public class Fragment4 extends Fragment {
         tv_read_title = v.findViewById(R.id.tv_read_title);
         img_letter_open = v.findViewById(R.id.img_letter_open);
         materialCalendarView = v.findViewById(R.id.calendarView);
+
+        // 전역 변수
+        String[] array2 = new String[200];
+        String[] array3 = new String[200];
+        ArrayList<String> arr_date = new ArrayList<String>();
+        ArrayList<Integer> arr_date2 = new ArrayList<Integer>();
+        int k = 0;
 
         // MainActivity에서 전달한 번들 저장
         Bundle bundle = getArguments();
