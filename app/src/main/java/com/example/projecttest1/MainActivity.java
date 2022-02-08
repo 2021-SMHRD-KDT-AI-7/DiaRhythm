@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
         String id = extras.getString("string");
 
         // id 값 확인용 Textview
-        tv_id.setText(id);
+        //tv_id.setText(id);
 
         // BottomNavigationView 클릭 동작 메소드
         bnview.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {

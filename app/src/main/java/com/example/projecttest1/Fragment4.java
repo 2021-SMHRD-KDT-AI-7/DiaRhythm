@@ -267,7 +267,7 @@ public class Fragment4 extends Fragment {
                 try {
                     img_letter_open.setVisibility(View.VISIBLE);
 
-                    Glide.with(v.getContext()).load(R.drawable.letter_gif).into(img_letter_open);
+                    Glide.with(v.getContext()).load(R.drawable.letter_new).into(img_letter_open);
 
                     // 편지 봉투 로딩
                     Handler handler = new Handler();

@@ -69,7 +69,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="64dp"
         android:text="다마고찌"
-        android:textSize="16sp"
+        android:textSize="24sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@+id/guideline7"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/guideline6"
@@ -79,7 +80,7 @@
         android:id="@+id/jo"
         android:layout_width="199dp"
         android:layout_height="159dp"
-        android:src="@drawable/jordy"
+        android:src="@drawable/egg_test"
         app:layout_constraintBottom_toTopOf="@+id/guideline10"
         app:layout_constraintEnd_toStartOf="@+id/guideline7"
         app:layout_constraintStart_toStartOf="@+id/guideline6" />
