@@ -11,7 +11,6 @@
         android:id="@+id/et_id_j"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
         android:backgroundTint="#E6D5D5"
         android:ems="10"
         android:hint="아이디"
@@ -19,6 +18,7 @@
         android:textColor="#FFFFFF"
         android:textColorHint="#CAC1C1"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline" />
 
@@ -26,7 +26,7 @@
         android:id="@+id/et_pw_j"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:backgroundTint="#E6D5D5"
         android:ems="10"
         android:hint="비밀번호"
@@ -42,7 +42,7 @@
         android:id="@+id/et_address"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:backgroundTint="#E6D5D5"
         android:ems="10"
         android:hint="주소"
@@ -57,7 +57,7 @@
         android:id="@+id/et_pn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:backgroundTint="#E6D5D5"
         android:ems="10"
         android:hint="연락처"
@@ -73,7 +73,7 @@
         android:id="@+id/et_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:backgroundTint="#E6D5D5"
         android:ems="10"
         android:hint="이름"
@@ -91,32 +91,34 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.08" />
 
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="222dp"
-        android:layout_height="63dp"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="@+id/rg_gender"
-        app:layout_constraintStart_toStartOf="@+id/rg_gender"
-        app:layout_constraintTop_toBottomOf="@+id/rg_gender">
+    <Button
+        android:id="@+id/btn_join_j"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="92dp"
+        android:layout_marginTop="16dp"
+        android:layout_weight="0"
+        android:background="#283593"
+        android:insetRight="1dp"
+        android:text="가입"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rg_gender" />
 
-        <Button
-            android:id="@+id/btn_join_j"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:insetRight="6dp"
-            android:text="가입" />
-
-        <Button
-            android:id="@+id/btn_cancel"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:insetLeft="6dp"
-            android:text="취소" />
-    </LinearLayout>
+    <Button
+        android:id="@+id/btn_cancel"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="100dp"
+        android:layout_weight="0"
+        android:background="#283593"
+        android:insetLeft="1dp"
+        android:text="취소"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_join_j"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/btn_join_j"
+        app:layout_constraintTop_toTopOf="@+id/btn_join_j"
+        app:layout_constraintVertical_bias="0.0" />
 
     <RadioGroup
         android:id="@+id/rg_gender"
@@ -144,5 +146,25 @@
             android:text="여"
             android:textColor="#FFFFFF" />
     </RadioGroup>
+
+    <ListView
+        android:id="@+id/lv"
+        android:layout_width="0dp"
+        android:layout_height="166dp"
+        android:layout_marginTop="20dp"
+        android:background="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_join_j" />
+
+    <CheckBox
+        android:id="@+id/checkBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="개인정보 수집ㆍ이용에 동의합니다.(필수)"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/lv"
+        app:layout_constraintTop_toBottomOf="@+id/lv" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -50,8 +50,7 @@ public class Fragment2 extends Fragment {
     LineChart lineChart;
     String result;
     String result_rep;
-    TextView tv_test1;
-    TextView tv_test2;
+
     String num1, num_1, num2, num_2, num3, num_3, num4, num_4, num5, num_5, num6, num_6, num7, num_7;
 
     int a;
@@ -61,8 +60,7 @@ public class Fragment2 extends Fragment {
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_2, container, false);
         lineChart = v.findViewById(R.id.linechart);
-        tv_test1 = v.findViewById(R.id.tv_test1);
-        tv_test2 = v.findViewById(R.id.tv_test2);
+
         // DB에서 받아온 문자열 데이터를 필요한 규격에 맞게 슬라이싱
         try {
             Bundle bundle = getArguments();
@@ -73,7 +71,7 @@ public class Fragment2 extends Fragment {
             result = task.execute(id).get();
             Log.v("그래프 데이터", result);
 
-            tv_test2.setText(result);
+
 
             num1 = result.substring(10, 15);
             num_1 = result.substring(25, 27);

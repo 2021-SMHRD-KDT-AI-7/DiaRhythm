@@ -1,12 +1,14 @@
 package com.example.projecttest1;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -116,9 +118,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+
                 Intent intent = new Intent(MainActivity.this, DiaryActivity.class);
                 intent.putExtra("string", id);
                 startActivity(intent);
+
 
             }
         });
@@ -126,6 +130,8 @@ public class MainActivity extends AppCompatActivity {
 
        // int i = extras.getInt("integer");
     }
+    
+
 
 
 

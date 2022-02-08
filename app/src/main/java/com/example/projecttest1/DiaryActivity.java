@@ -1,7 +1,9 @@
 package com.example.projecttest1;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -49,6 +51,7 @@ public class DiaryActivity extends AppCompatActivity {
         btn_submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 //flask서버의 ip주소로 변경할 것
                 //뒤에 라우터 경로 작성할 것
                 String flask_url = "http://121.147.52.194:80/emotions";
@@ -109,6 +112,10 @@ public class DiaryActivity extends AppCompatActivity {
                         startActivity(intent);
                         finish();
 
+//                        showDialog();
+
+
+
                     } catch (Exception e) {
 
                     }
@@ -134,6 +141,21 @@ public class DiaryActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+
+    }
+    // 얼트다이어로그 띄우기
+    void showDialog() {
+        AlertDialog.Builder msgBuilder = new AlertDialog.Builder(DiaryActivity.this)
+                .setTitle("AI 코멘트")
+                .setMessage("힘내세요 할 수 있어요.")
+                .setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                    @Override public void onClick(DialogInterface dialogInterface, int i) {
+                        finish();
+                    } });
+        AlertDialog msgDlg = msgBuilder.create();
+        msgDlg.show();
+
 
 
     }
