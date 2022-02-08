@@ -14,7 +14,6 @@
         android:layout_width="140dp"
         android:layout_height="267dp"
         android:src="@drawable/write_background"
-
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline17" />
@@ -24,7 +23,6 @@
         android:layout_width="140dp"
         android:layout_height="267dp"
         android:src="@drawable/write_background"
-
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/img_read1"
         app:layout_constraintStart_toEndOf="@+id/img_read3"
@@ -34,7 +32,6 @@
         android:id="@+id/img_read1"
         android:layout_width="140dp"
         android:layout_height="267dp"
-
         android:src="@drawable/write_background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -49,10 +46,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
         app:mcv_allowClickDaysOutsideCurrentMonth="false"
         app:mcv_arrowColor="#FFFFFF"
         app:mcv_selectionColor="#227E75"
-        app:mcv_showOtherDates="defaults" >
+        app:mcv_showOtherDates="defaults">
 
     </com.prolificinteractive.materialcalendarview.MaterialCalendarView>
 
@@ -62,29 +60,6 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.4" />
-
-    <TextView
-        android:id="@+id/tv_read_content"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:text="내용"
-        android:textColor="#FFFFFF"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/calendarView" />
-
-    <TextView
-        android:id="@+id/tv_read_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="68dp"
-        android:text="제목"
-        android:textColor="#000000"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.48"
-        app:layout_constraintStart_toEndOf="@+id/img_read2"
-        app:layout_constraintTop_toTopOf="@+id/img_read1" />
 
     <ImageView
         android:id="@+id/img_letter_open"
@@ -96,5 +71,124 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_preview3"
+        android:layout_width="87dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="60dp"
+        android:text="test"
+        android:textColor="#000000"
+        app:layout_constraintEnd_toEndOf="@+id/img_read3"
+        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/img_read3" />
+
+    <TextView
+        android:id="@+id/tv_preview_con3"
+        android:layout_width="87dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="16dp"
+        android:text="test"
+        android:textColor="#000000"
+        app:layout_constraintEnd_toEndOf="@+id/tv_preview3"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/tv_preview3"
+        app:layout_constraintTop_toBottomOf="@+id/tv_preview3" />
+
+    <TextView
+        android:id="@+id/tv_preview2"
+        android:layout_width="88dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="60dp"
+        android:text="test"
+        android:textColor="#000000"
+        app:layout_constraintEnd_toEndOf="@+id/img_read2"
+        app:layout_constraintHorizontal_bias="0.437"
+        app:layout_constraintStart_toEndOf="@+id/img_read3"
+        app:layout_constraintTop_toTopOf="@+id/img_read2" />
+
+    <TextView
+        android:id="@+id/tv_preview_con2"
+        android:layout_width="88dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="16dp"
+        android:text="test"
+        android:textColor="#000000"
+        app:layout_constraintEnd_toEndOf="@+id/tv_preview2"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/tv_preview2"
+        app:layout_constraintTop_toBottomOf="@+id/tv_preview2" />
+
+    <TextView
+        android:id="@+id/tv_preview1"
+        android:layout_width="91dp"
+        android:layout_height="26dp"
+        android:layout_marginTop="60dp"
+        android:text="test"
+        android:textColor="#000000"
+        app:layout_constraintEnd_toEndOf="@+id/img_read1"
+        app:layout_constraintHorizontal_bias="0.431"
+        app:layout_constraintStart_toEndOf="@+id/img_read2"
+        app:layout_constraintTop_toTopOf="@+id/img_read1" />
+
+    <TextView
+        android:id="@+id/tv_preview_con1"
+        android:layout_width="91dp"
+        android:layout_height="26dp"
+        android:layout_marginTop="12dp"
+        android:text="test"
+        android:textColor="#000000"
+        app:layout_constraintEnd_toEndOf="@+id/tv_preview1"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/tv_preview1"
+        app:layout_constraintTop_toBottomOf="@+id/tv_preview1" />
+
+    <ImageView
+        android:id="@+id/img_preRead"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/write_background"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/calendarView" />
+
+    <ImageView
+        android:id="@+id/img_readClose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="270dp"
+        android:layout_marginTop="70dp"
+        android:src="@android:drawable/ic_menu_close_clear_cancel"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_read_title"
+        android:layout_width="292dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="90dp"
+        android:text="제목"
+        android:textColor="#000000"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/calendarView" />
+
+    <TextView
+        android:id="@+id/tv_read_content"
+        android:layout_width="298dp"
+        android:layout_height="429dp"
+        android:layout_marginTop="150dp"
+        android:text="내용"
+        android:textColor="#000000"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/calendarView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
