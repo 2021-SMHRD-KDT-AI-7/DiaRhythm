@@ -6,9 +6,11 @@ import android.os.Bundle;
 import androidx.annotation.ArrayRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
 import android.os.Handler;
+import android.text.Layout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -48,11 +50,13 @@ public class Fragment4 extends Fragment {
     TextView tv_preview_con3;
     ImageView img_preRead;
     ImageView img_readClose;
-
+    ConstraintLayout lo_overView;
+    ConstraintLayout lo_preview;
 
 
     String result;
     String result2;
+    String writeDay;
 
     // 캘린더 변수
     MaterialCalendarView materialCalendarView;
@@ -74,7 +78,7 @@ public class Fragment4 extends Fragment {
 //        tv_title_read = v.findViewById(R.id.tv_title_read);
         img_read1 = v.findViewById(R.id.img_read1);
         img_read2 = v.findViewById(R.id.img_read2);
-        img_read3 = v.findViewById(R.id.img_read1);
+        img_read3 = v.findViewById(R.id.img_read3);
         tv_read_content = v.findViewById(R.id.tv_read_content);
         tv_read_title = v.findViewById(R.id.tv_read_title);
         img_letter_open = v.findViewById(R.id.img_letter_open);
@@ -87,6 +91,8 @@ public class Fragment4 extends Fragment {
         tv_preview_con3 = v.findViewById(R.id.tv_preview_con3);
         img_preRead = v.findViewById(R.id.img_preRead);
         img_readClose = v.findViewById(R.id.img_readClose);
+        lo_overView = (ConstraintLayout) v.findViewById(R.id.lo_overView);
+        lo_preview = (ConstraintLayout)v.findViewById(R.id.lo_preview);
 
         // 전역 변수
         String[] array2 = new String[200];
@@ -194,6 +200,8 @@ public class Fragment4 extends Fragment {
                 String[] array4 = new String[200];
 
 
+
+
                 // if 를 사용하여 10으로 나눴을 때 0일때 --> 1의자리일때 문자열 0 붙이기
                 //
                 if(day/10 == 0) {
@@ -212,6 +220,19 @@ public class Fragment4 extends Fragment {
                 result = task.execute(id,today1).get().replace("    ", "");
                 Log.v("return", result);
 
+
+
+                    RegisterWritedayActivity task1 = new RegisterWritedayActivity();
+                    writeDay = task1.execute(id,today1).get().replace("    ", "");
+                    Log.v("일기썼냐?", writeDay);
+
+                    // 클릭한 해당 일에 일기를 썼는지 판별
+                     if (writeDay.equals("null")){
+                      lo_preview.setVisibility(View.INVISIBLE);
+                    }else{
+                       lo_preview.setVisibility(View.VISIBLE);
+                    }
+
                     //맨 처음, 맨 마지막 대괄호 제거
                     result2 = result.replace("[", "");
                     result2 = result2.replace("]", "");
@@ -222,39 +243,36 @@ public class Fragment4 extends Fragment {
 
                     // toString 을 " "(공백)을 기준으로 잘라 array 배열에 저장하기
                     array4 = result2.split("&");
-                    Log.v("어레이 확인",array4[0]);
+                    Log.v("어레이1 확인",array4[0]);
+                    Log.v("어레이2 확인",array4[1]);
+                    Log.v("어레이3 확인",array4[2]);
+                    Log.v("어레이4 확인",array4[3]);
+                    Log.v("어레이4 확인",Integer.toString(array4.length));
 
 
                     for(int i = 0; i < array4.length; i++){
-                        Log.v("길이좀 보자!",Integer.toString(array4.length));
-                        if(i%2 ==0){
+                        Log.v("배열 길이!",Integer.toString(array4.length));
+                        if(i%2 ==0) {
                             arr_title.add(array4[i]);
-                            Log.v("짝수일때 제목 삽입!",arr_title.get(i));
                             tv_preview1.setText(arr_title.get(i));
-/*
-                            tv_preview2.setText(arr_title.get(i+1));
-                            Log.v("짝수일때 제목 삽입!",tv_preview2.toString());
-
-                            Log.v("짝수일때 제목 삽입!",arr_title.get(i+2));
-                            tv_preview3.setText(arr_title.get(i+2));
-
- */
+                            tv_preview2.setText(arr_title.get(i + 1));
+                            tv_preview3.setText(arr_title.get(i + 2));
                         }
-                        else{
-                            arr_content.add(array4[i]);
-                            Log.v("홀수일때 내용 삽입!",arr_content.get(i));
-                            tv_preview_con1.setText(arr_content.get(i));
-                            /*
-                            tv_preview_con2.setText(arr_content.get(i+1));
-                            tv_preview_con3.setText(arr_content.get(i+2));
 
-                             */
                         }
-                    }
 
-
+                        for(int i = 0; i < array4.length; i++){
+                            if(i%2 ==1) {
+                                arr_content.add(array4[i]);
+                                Log.v("홀수일때 내용 삽입!", arr_content.get(i));
+                                tv_preview_con1.setText(arr_content.get(i));
+                                tv_preview_con2.setText(arr_content.get(i + 1));
+                                tv_preview_con3.setText(arr_content.get(i + 2));
+                            }
+                        }
+                        
                 }catch (Exception e){
-
+                        Log.v("예외 발생",result);
                 }
 
             }
@@ -275,16 +293,15 @@ public class Fragment4 extends Fragment {
                         @Override
                         public void run() {
                             img_letter_open.setVisibility(View.INVISIBLE);
-                            img_preRead.setVisibility(View.VISIBLE);
-                            tv_read_title.setVisibility(View.VISIBLE);
-                            tv_read_content.setVisibility(View.VISIBLE);
-                            img_readClose.setVisibility(View.VISIBLE);
+                            lo_overView.setVisibility(View.VISIBLE);
+                            tv_read_title.setText(arr_title.get(0));
+                            tv_read_content.setText(arr_content.get(0));
 
+                            Log.v("arr_title",arr_title.get(0).toString());
+                            Log.v("arr_content",arr_content.get(0).toString());
 
                         }
                     }, 1000);
-
-
 
 
 
@@ -315,10 +332,81 @@ public class Fragment4 extends Fragment {
         img_read2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                tv_read_title.setText("ㅆ");
+
+                try {
+                    img_letter_open.setVisibility(View.VISIBLE);
+
+                    Glide.with(v.getContext()).load(R.drawable.letter_new).into(img_letter_open);
+
+                    // 편지 봉투 로딩
+                    Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            img_letter_open.setVisibility(View.INVISIBLE);
+                            lo_overView.setVisibility(View.VISIBLE);
+                            tv_read_title.setText(arr_title.get(1));
+                            tv_read_content.setText(arr_content.get(1));
+
+                        }
+                    }, 1000);
+
+            } catch (Exception e) {
+            }
+
+
+        }
+    });
+
+
+        img_read3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                try {
+                    img_letter_open.setVisibility(View.VISIBLE);
+
+                    Glide.with(v.getContext()).load(R.drawable.letter_new).into(img_letter_open);
+
+                    // 편지 봉투 로딩
+                    Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            img_letter_open.setVisibility(View.INVISIBLE);
+                            lo_overView.setVisibility(View.VISIBLE);
+                            tv_read_title.setText(arr_title.get(2));
+                            tv_read_content.setText(arr_content.get(2));
+
+                        }
+                    }, 1000);
+
+                } catch (Exception e) {
+                }
+
+
             }
         });
 
+
+
+
+                // 일기 overView
+        img_preRead.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
+        // 일기 overView 닫기
+        img_readClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                lo_overView.setVisibility(View.INVISIBLE);
+                Toast.makeText(getContext(), "overView1 닫기!", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         return v;
 
