@@ -1,5 +1,6 @@
 package com.example.projecttest1;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -100,15 +101,26 @@ public class Fragment5 extends Fragment {
             result_rep = result.replace(" ", "");
 
 
-        info.add("내가 쓴 일기 횟수" + result);
-        info.add("연속 작성 횟수");
+        info.add("내가 쓴 일기 횟수" +"       "+ result);
         info.add("공지사항");
         info.add("개인정보약관동의");
-        info.add("앱버전");
+        info.add("앱버전"+ "                      " +    "     1.0 v");
+
 
         }catch (Exception e){
 
         }
+
+        // 로그아웃 기능
+
+        btn_logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(),LoginActivity.class);
+                startActivity(intent);
+
+            }
+        });
 
         
         adapter.notifyDataSetChanged();
