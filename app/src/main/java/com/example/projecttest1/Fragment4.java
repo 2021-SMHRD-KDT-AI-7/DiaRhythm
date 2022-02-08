@@ -26,6 +26,7 @@ import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
+import java.util.Date;
 import java.util.concurrent.ExecutionException;
 
 
@@ -39,6 +40,16 @@ public class Fragment4 extends Fragment {
     TextView tv_read_content;
     TextView tv_read_title;
     ImageView img_letter_open;
+    TextView tv_preview1;
+    TextView tv_preview2;
+    TextView tv_preview3;
+    TextView tv_preview_con1;
+    TextView tv_preview_con2;
+    TextView tv_preview_con3;
+    ImageView img_preRead;
+    ImageView img_readClose;
+
+
 
     String result;
     String result2;
@@ -68,12 +79,25 @@ public class Fragment4 extends Fragment {
         tv_read_title = v.findViewById(R.id.tv_read_title);
         img_letter_open = v.findViewById(R.id.img_letter_open);
         materialCalendarView = v.findViewById(R.id.calendarView);
+        tv_preview1 = v.findViewById(R.id.tv_preview1);
+        tv_preview2 = v.findViewById(R.id.tv_preview2);
+        tv_preview3 = v.findViewById(R.id.tv_preview3);
+        tv_preview_con1 = v.findViewById(R.id.tv_preview_con1);
+        tv_preview_con2 = v.findViewById(R.id.tv_preview_con2);
+        tv_preview_con3 = v.findViewById(R.id.tv_preview_con3);
+        img_preRead = v.findViewById(R.id.img_preRead);
+        img_readClose = v.findViewById(R.id.img_readClose);
 
         // 전역 변수
         String[] array2 = new String[200];
         String[] array3 = new String[200];
+
         ArrayList<String> arr_date = new ArrayList<String>();
         ArrayList<Integer> arr_date2 = new ArrayList<Integer>();
+        ArrayList<String> arr_title = new ArrayList<String>();
+        ArrayList<String> arr_content = new ArrayList<String>();
+
+
         int k = 0;
 
         // MainActivity에서 전달한 번들 저장
@@ -158,16 +182,81 @@ public class Fragment4 extends Fragment {
             ed2.get(i)
         );
         }
-
+        
+        // 날짜를 눌렀을때 동작하는 메소드
         materialCalendarView.setOnDateChangedListener(new OnDateSelectedListener() {
             @Override
             public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
                 int year = widget.getSelectedDate().getYear();
-                int month = widget.getSelectedDate().getMonth();
+                int month = widget.getSelectedDate().getMonth()+1;
                 int day = widget.getSelectedDate().getDay();
+                String today1;
+                String[] array4 = new String[200];
 
-                String today = year + "년 " + month + "월 " + day + "일";
-                Toast.makeText(getActivity(), today, Toast.LENGTH_SHORT).show(); // 선택한 날짜 토스트 출력
+
+                // if 를 사용하여 10으로 나눴을 때 0일때 --> 1의자리일때 문자열 0 붙이기
+                //
+                if(day/10 == 0) {
+                    today1 = year + "0" + month+ "0" + day + ""; // 1월부터 0월까지는 01 02 가 아니라 1 2 로 출력되서 코드상 0을 넣음
+                }else{
+                    today1 = year + "0" + month+ "" + day + ""; // 1월부터 0월까지는 01 02 가 아니라 1 2 로 출력되서 코드상 0을 넣음
+                }
+
+                Toast.makeText(getActivity(), today1, Toast.LENGTH_SHORT).show(); // 선택한 날짜 토스트 출력
+
+                // db 연동
+                try {
+
+
+                RegisterPreviewActivity task = new RegisterPreviewActivity();
+                result = task.execute(id,today1).get().replace("    ", "");
+                Log.v("return", result);
+
+                    //맨 처음, 맨 마지막 대괄호 제거
+                    result2 = result.replace("[", "");
+                    result2 = result2.replace("]", "");
+                    result2 = result2.replace(", ", "");
+
+                    Log.v("프리뷰는?", result2);
+
+
+                    // toString 을 " "(공백)을 기준으로 잘라 array 배열에 저장하기
+                    array4 = result2.split("&");
+                    Log.v("어레이 확인",array4[0]);
+
+
+                    for(int i = 0; i < array4.length; i++){
+                        Log.v("길이좀 보자!",Integer.toString(array4.length));
+                        if(i%2 ==0){
+                            arr_title.add(array4[i]);
+                            Log.v("짝수일때 제목 삽입!",arr_title.get(i));
+                            tv_preview1.setText(arr_title.get(i));
+/*
+                            tv_preview2.setText(arr_title.get(i+1));
+                            Log.v("짝수일때 제목 삽입!",tv_preview2.toString());
+
+                            Log.v("짝수일때 제목 삽입!",arr_title.get(i+2));
+                            tv_preview3.setText(arr_title.get(i+2));
+
+ */
+                        }
+                        else{
+                            arr_content.add(array4[i]);
+                            Log.v("홀수일때 내용 삽입!",arr_content.get(i));
+                            tv_preview_con1.setText(arr_content.get(i));
+                            /*
+                            tv_preview_con2.setText(arr_content.get(i+1));
+                            tv_preview_con3.setText(arr_content.get(i+2));
+
+                             */
+                        }
+                    }
+
+
+                }catch (Exception e){
+
+                }
+
             }
         });
 
@@ -180,15 +269,26 @@ public class Fragment4 extends Fragment {
 
                     Glide.with(v.getContext()).load(R.drawable.letter_gif).into(img_letter_open);
 
+                    // 편지 봉투 로딩
                     Handler handler = new Handler();
                     handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
                             img_letter_open.setVisibility(View.INVISIBLE);
+                            img_preRead.setVisibility(View.VISIBLE);
+                            tv_read_title.setVisibility(View.VISIBLE);
+                            tv_read_content.setVisibility(View.VISIBLE);
+                            img_readClose.setVisibility(View.VISIBLE);
+
+
                         }
                     }, 2500);
 
 
+
+
+
+/*
                     RegisterReadActivity task = new RegisterReadActivity();
                     result = task.execute(id).get().replace("    ", "");
                     Log.v("return", result);
@@ -204,7 +304,7 @@ public class Fragment4 extends Fragment {
                     tv_read_title.setText((array[8]));
                     tv_read_content.setText(array[9]);
 
-
+*/
                 } catch (Exception e) {
                 }
 
