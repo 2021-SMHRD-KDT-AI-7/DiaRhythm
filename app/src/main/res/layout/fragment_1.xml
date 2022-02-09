@@ -45,17 +45,17 @@
 
     <TextView
         android:id="@+id/tv_saying_content"
-        android:layout_width="298dp"
-        android:layout_height="116dp"
+        android:layout_width="300dp"
+        android:layout_height="106dp"
         android:layout_marginTop="56dp"
         android:gravity="start|top"
-        android:paddingLeft="5dp"
+        android:paddingLeft="10dp"
         android:paddingTop="10dp"
+        android:paddingRight="10dp"
         android:scrollHorizontally="false"
         android:singleLine="false"
-        android:text="일찍 일어나는 새가 벌레를 터트리는 법"
         android:textAlignment="center"
-        android:textSize="18sp"
+        android:textSize="17sp"
         app:layout_constraintBottom_toTopOf="@+id/egg"
         app:layout_constraintEnd_toStartOf="@+id/guideline7"
         app:layout_constraintHorizontal_bias="0.487"
@@ -64,18 +64,30 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
+        android:id="@+id/tv_saying_man"
+        android:layout_width="125dp"
+        android:layout_height="34dp"
+        android:layout_marginBottom="44dp"
+        android:gravity="center"
+        android:text="예시"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toTopOf="@+id/textView2"
+        app:layout_constraintEnd_toStartOf="@+id/guideline7"
+        app:layout_constraintHorizontal_bias="0.926"
+        app:layout_constraintStart_toStartOf="@+id/guideline6" />
+
+    <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
         android:text="알 키우기"
         android:textColor="#FFFFFF"
         android:textSize="24sp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/guideline9"
         app:layout_constraintEnd_toStartOf="@+id/guideline7"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/guideline6"
-        app:layout_constraintTop_toBottomOf="@+id/tv_saying_content" />
+        app:layout_constraintStart_toStartOf="@+id/guideline6" />
 
     <ImageView
         android:id="@+id/egg"
@@ -91,7 +103,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.5" />
+        app:layout_constraintGuide_percent="0.49924126" />
 
     <ImageView
         android:id="@+id/box_white"

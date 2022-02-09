@@ -57,7 +57,7 @@ public class Fragment3 extends Fragment {
         try {
 
             RegisterMusicActivity task = new RegisterMusicActivity();
-            result = task.execute().get().replace("    ", "");
+            result = task.execute(id).get().replace("    ", "");
 
 
             //맨 처음, 맨 마지막 대괄호 제거
