@@ -25,6 +25,9 @@ import com.prolificinteractive.materialcalendarview.CalendarMode;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
@@ -42,21 +45,33 @@ public class Fragment4 extends Fragment {
     TextView tv_read_content;
     TextView tv_read_title;
     ImageView img_letter_open;
+
     TextView tv_preview1;
     TextView tv_preview2;
     TextView tv_preview3;
+
     TextView tv_preview_con1;
     TextView tv_preview_con2;
     TextView tv_preview_con3;
+
+    TextView[] tv_previews;
+    TextView[] tv_preview_cons;
+
     ImageView img_preRead;
     ImageView img_readClose;
     ConstraintLayout lo_overView;
     ConstraintLayout lo_preview;
+    ConstraintLayout lo_preview1;
+    ConstraintLayout lo_preview2;
+    ConstraintLayout lo_preview3;
 
 
     String result;
     String result2;
     String writeDay;
+
+    JSONObject obj;
+    JSONArray jsonArray = new JSONArray();
 
     // 캘린더 변수
     MaterialCalendarView materialCalendarView;
@@ -83,20 +98,36 @@ public class Fragment4 extends Fragment {
         tv_read_title = v.findViewById(R.id.tv_read_title);
         img_letter_open = v.findViewById(R.id.img_letter_open);
         materialCalendarView = v.findViewById(R.id.calendarView);
-        tv_preview1 = v.findViewById(R.id.tv_preview1);
-        tv_preview2 = v.findViewById(R.id.tv_preview2);
-        tv_preview3 = v.findViewById(R.id.tv_preview3);
-        tv_preview_con1 = v.findViewById(R.id.tv_preview_con1);
-        tv_preview_con2 = v.findViewById(R.id.tv_preview_con2);
-        tv_preview_con3 = v.findViewById(R.id.tv_preview_con3);
+//        tv_preview1 = v.findViewById(R.id.tv_preview1);
+//        tv_preview2 = v.findViewById(R.id.tv_preview2);
+//        tv_preview3 = v.findViewById(R.id.tv_preview3);
+//        tv_preview_con1 = v.findViewById(R.id.tv_preview_con1);
+//        tv_preview_con2 = v.findViewById(R.id.tv_preview_con2);
+//        tv_preview_con3 = v.findViewById(R.id.tv_preview_con3);
         img_preRead = v.findViewById(R.id.img_preRead);
         img_readClose = v.findViewById(R.id.img_readClose);
+
         lo_overView = (ConstraintLayout) v.findViewById(R.id.lo_overView);
         lo_preview = (ConstraintLayout)v.findViewById(R.id.lo_preview);
+
+        lo_preview1 = (ConstraintLayout)v.findViewById(R.id.lo_preview1);
+        lo_preview2 = (ConstraintLayout)v.findViewById(R.id.lo_preview2);
+        lo_preview3= (ConstraintLayout)v.findViewById(R.id.lo_preview3);
 
         // 전역 변수
         String[] array2 = new String[200];
         String[] array3 = new String[200];
+
+        tv_previews = new TextView[50];
+        tv_preview_cons = new TextView[50];
+
+        for(int i=0; i<tv_previews.length; i++){
+            int titleId = getResources().getIdentifier("tv_preview"+(i+1), "id",  getActivity().getPackageName());
+            int contentId = getResources().getIdentifier("tv_preview_con"+(i+1), "id",  getActivity().getPackageName());
+
+            tv_previews[i] = v.findViewById(titleId);
+            tv_preview_cons[i]  = v.findViewById(contentId);
+        }
 
         ArrayList<String> arr_date = new ArrayList<String>();
         ArrayList<Integer> arr_date2 = new ArrayList<Integer>();
@@ -215,6 +246,24 @@ public class Fragment4 extends Fragment {
                 // db 연동
                 try {
 
+                    // 클릭한 해당 일에 일기를 썼는지 판별
+                    RegisterWritedayActivity task1 = new RegisterWritedayActivity();
+                    writeDay = task1.execute(id,today1).get().replace("    ", "");
+                    Log.v("일기썼냐?", writeDay);
+
+                    if (writeDay.equals("null")){
+                        lo_preview1.setVisibility(View.INVISIBLE);
+                        lo_preview2.setVisibility(View.INVISIBLE);
+                        lo_preview3.setVisibility(View.INVISIBLE);
+                        lo_preview.setVisibility(View.INVISIBLE);
+                    }else{
+                        lo_preview.setVisibility(View.VISIBLE);
+                        lo_preview1.setVisibility(View.VISIBLE);
+                        lo_preview2.setVisibility(View.VISIBLE);
+                        lo_preview3.setVisibility(View.VISIBLE);
+                    }
+
+
 
                 RegisterPreviewActivity task = new RegisterPreviewActivity();
                 result = task.execute(id,today1).get().replace("    ", "");
@@ -222,57 +271,64 @@ public class Fragment4 extends Fragment {
 
 
 
-                    RegisterWritedayActivity task1 = new RegisterWritedayActivity();
-                    writeDay = task1.execute(id,today1).get().replace("    ", "");
-                    Log.v("일기썼냐?", writeDay);
-
-                    // 클릭한 해당 일에 일기를 썼는지 판별
-                     if (writeDay.equals("null")){
-                      lo_preview.setVisibility(View.INVISIBLE);
-                    }else{
-                       lo_preview.setVisibility(View.VISIBLE);
-                    }
-
-                    //맨 처음, 맨 마지막 대괄호 제거
-                    result2 = result.replace("[", "");
-                    result2 = result2.replace("]", "");
-                    result2 = result2.replace(", ", "");
-
-                    Log.v("프리뷰는?", result2);
 
 
-                    // toString 을 " "(공백)을 기준으로 잘라 array 배열에 저장하기
-                    array4 = result2.split("&");
-                    Log.v("어레이1 확인",array4[0]);
-                    Log.v("어레이2 확인",array4[1]);
-                    Log.v("어레이3 확인",array4[2]);
-                    Log.v("어레이4 확인",array4[3]);
-                    Log.v("어레이4 확인",Integer.toString(array4.length));
+                     // JSON 파일의 딕셔너리 형태로 배열에 저장
+
+                    jsonArray = new JSONArray(result);
+
+                     for(int i=0; i<jsonArray.length(); i++){
+                         obj = (JSONObject) jsonArray.getJSONObject(i);
+
+                         Log.v("프리뷰일기", obj.getString("title"));
+                         Log.v("프리뷰일기", obj.getString("content"));
+
+                         tv_previews[i].setText(obj.getString("title"));
+                         tv_preview_cons[i].setText(obj.getString("content"));
+
+                     }
 
 
-                    for(int i = 0; i < array4.length; i++){
-                        Log.v("배열 길이!",Integer.toString(array4.length));
-                        if(i%2 ==0) {
-                            arr_title.add(array4[i]);
-                            tv_preview1.setText(arr_title.get(i));
-                            tv_preview2.setText(arr_title.get(i + 1));
-                            tv_preview3.setText(arr_title.get(i + 2));
-                        }
-
-                        }
-
-                        for(int i = 0; i < array4.length; i++){
-                            if(i%2 ==1) {
-                                arr_content.add(array4[i]);
-                                Log.v("홀수일때 내용 삽입!", arr_content.get(i));
-                                tv_preview_con1.setText(arr_content.get(i));
-                                tv_preview_con2.setText(arr_content.get(i + 1));
-                                tv_preview_con3.setText(arr_content.get(i + 2));
-                            }
-                        }
+//                    //맨 처음, 맨 마지막 대괄호 제거
+//                    result2 = result.replace("[", "");
+//                    result2 = result2.replace("]", "");
+//                    result2 = result2.replace(", ", "");
+//
+//                    Log.v("프리뷰는?", result2);
+//
+//
+//                    // toString 을 " "(공백)을 기준으로 잘라 array 배열에 저장하기
+//                    array4 = result2.split("&");
+//                    Log.v("어레이1 확인",array4[0]);
+//                    Log.v("어레이2 확인",array4[1]);
+//                    Log.v("어레이3 확인",array4[2]);
+//                    Log.v("어레이4 확인",array4[3]);
+//                    Log.v("어레이4 확인",Integer.toString(array4.length));
+//
+//
+//                    for(int i = 0; i < array4.length; i++){
+//                        Log.v("배열 길이!",Integer.toString(array4.length));
+//                        if(i%2 ==0) {
+//                            arr_title.add(array4[i]);
+//                            tv_preview1.setText(arr_title.get(i));
+//                            tv_preview2.setText(arr_title.get(i + 1));
+//                            tv_preview3.setText(arr_title.get(i + 2));
+//                        }
+//
+//                        }
+//
+//                        for(int i = 0; i < array4.length; i++){
+//                            if(i%2 ==1) {
+//                                arr_content.add(array4[i]);
+//                                Log.v("홀수일때 내용 삽입!", arr_content.get(i));
+//                                tv_preview_con1.setText(arr_content.get(i));
+//                                tv_preview_con2.setText(arr_content.get(i + 1));
+//                                tv_preview_con3.setText(arr_content.get(i + 2));
+//                            }
+//                        }
                         
                 }catch (Exception e){
-                        Log.v("예외 발생",result);
+                        Log.v("얭하초\\\\",result);
                 }
 
             }
@@ -294,11 +350,37 @@ public class Fragment4 extends Fragment {
                         public void run() {
                             img_letter_open.setVisibility(View.INVISIBLE);
                             lo_overView.setVisibility(View.VISIBLE);
-                            tv_read_title.setText(arr_title.get(0));
-                            tv_read_content.setText(arr_content.get(0));
+                            //tv_read_title.setText(arr_title.get(0));
+                            //tv_read_content.setText(arr_content.get(0));
+                    //        tv_previews[i].setText(obj.getString("title"));
+                    //        tv_preview_cons[i].setText(obj.getString("content"));
 
-                            Log.v("arr_title",arr_title.get(0).toString());
-                            Log.v("arr_content",arr_content.get(0).toString());
+                            try {
+
+                                jsonArray = new JSONArray(result);
+                                //JSONArray jsonArray = new JSONArray(result);
+
+                                //for(int i=0; i<jsonArray.length(); i++){
+                                    obj = (JSONObject) jsonArray.getJSONObject(0);
+
+                                    Log.v("프리뷰일기", obj.getString("title"));
+                                    Log.v("프리뷰일기", obj.getString("content"));
+
+                                    tv_read_title.setText(obj.getString("title"));
+                                    tv_read_content.setText(obj.getString("content"));
+                                    //tv_previews[i].setText(obj.getString("title"));
+
+                                    //tv_preview_cons[i].setText(obj.getString("content"));
+
+                                    //Log.v("arr_title",arr_title.get(0).toString());
+                                    //Log.v("arr_content",arr_content.get(0).toString());
+
+                        //    }
+
+                            }catch (Exception e){
+
+                            }
+
 
                         }
                     }, 1000);
@@ -345,8 +427,24 @@ public class Fragment4 extends Fragment {
                         public void run() {
                             img_letter_open.setVisibility(View.INVISIBLE);
                             lo_overView.setVisibility(View.VISIBLE);
-                            tv_read_title.setText(arr_title.get(1));
-                            tv_read_content.setText(arr_content.get(1));
+
+                            try {
+
+
+                            jsonArray = new JSONArray(result);
+                            //JSONArray jsonArray = new JSONArray(result);
+
+                            //for(int i=0; i<jsonArray.length(); i++){
+                            obj = (JSONObject) jsonArray.getJSONObject(1);
+
+                            Log.v("프리뷰일기", obj.getString("title"));
+                            Log.v("프리뷰일기", obj.getString("content"));
+
+                            tv_read_title.setText(obj.getString("title"));
+                            tv_read_content.setText(obj.getString("content"));
+                            }catch (Exception e){
+
+                            }
 
                         }
                     }, 1000);
@@ -375,9 +473,25 @@ public class Fragment4 extends Fragment {
                         public void run() {
                             img_letter_open.setVisibility(View.INVISIBLE);
                             lo_overView.setVisibility(View.VISIBLE);
-                            tv_read_title.setText(arr_title.get(2));
-                            tv_read_content.setText(arr_content.get(2));
 
+                            try {
+
+
+                            jsonArray = new JSONArray(result);
+                            //JSONArray jsonArray = new JSONArray(result);
+
+                            //for(int i=0; i<jsonArray.length(); i++){
+                            obj = (JSONObject) jsonArray.getJSONObject(2);
+
+                            Log.v("프리뷰일기", obj.getString("title"));
+                            Log.v("프리뷰일기", obj.getString("content"));
+
+                            tv_read_title.setText(obj.getString("title"));
+                            tv_read_content.setText(obj.getString("content"));
+
+                            }catch (Exception e){
+
+                            }
                         }
                     }, 1000);
 

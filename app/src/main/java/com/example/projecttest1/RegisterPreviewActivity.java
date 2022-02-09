@@ -33,6 +33,8 @@ public class RegisterPreviewActivity extends AsyncTask<String, Void, String> {
             osw.write(sendMsg);
             osw.flush();
 
+            /////////////////////////////Read////////////////////////////
+
             //jsp 와 통신 성공 시 수행
             if (conn.getResponseCode() == conn.HTTP_OK) {
                 InputStreamReader tmp = new InputStreamReader(conn.getInputStream(), "UTF-8");

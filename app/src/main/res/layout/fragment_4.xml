@@ -19,100 +19,136 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-        <ImageView
-            android:id="@+id/img_read1"
-            android:layout_width="140dp"
-            android:layout_height="267dp"
-            android:src="@drawable/write_background"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/lo_preview1"
+            android:layout_width="146dp"
+            android:layout_height="271dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/tv_preview1"
-            android:layout_width="91dp"
-            android:layout_height="26dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginEnd="25dp"
-            android:ellipsize="end"
-            android:textColor="#000000"
-            android:textSize="14sp"
-            app:layout_constraintBottom_toTopOf="@+id/tv_preview_con1"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/img_read1" />
+            <ImageView
+                android:id="@+id/img_read1"
+                android:layout_width="140dp"
+                android:layout_height="267dp"
+                android:layout_marginEnd="4dp"
+                android:src="@drawable/write_background"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/tv_preview_con1"
-            android:layout_width="84dp"
-            android:layout_height="149dp"
-            android:layout_marginBottom="25dp"
-            android:textColor="#000000"
-            android:textSize="12sp"
-            app:layout_constraintBottom_toBottomOf="@+id/img_read1"
-            app:layout_constraintEnd_toEndOf="@+id/tv_preview1"
-            app:layout_constraintStart_toStartOf="@+id/tv_preview1" />
+            <TextView
+                android:id="@+id/tv_preview1"
+                android:layout_width="91dp"
+                android:layout_height="26dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginEnd="25dp"
+                android:ellipsize="end"
+                android:textColor="#000000"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/img_read1" />
 
-        <ImageView
-            android:id="@+id/img_read2"
-            android:layout_width="140dp"
-            android:layout_height="267dp"
-            android:src="@drawable/write_background"
+            <TextView
+                android:id="@+id/tv_preview_con1"
+                android:layout_width="91dp"
+                android:layout_height="155dp"
+                android:layout_marginTop="15dp"
+                android:textColor="#000000"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/tv_preview1"
+                app:layout_constraintStart_toStartOf="@+id/tv_preview1"
+                app:layout_constraintTop_toBottomOf="@+id/tv_preview1" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/lo_preview2"
+            android:layout_width="126dp"
+            android:layout_height="278dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/img_read1"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintEnd_toStartOf="@+id/lo_preview1"
+            app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/tv_preview2"
-            android:layout_width="88dp"
-            android:layout_height="24dp"
-            android:layout_marginTop="50dp"
-            android:layout_marginEnd="50dp"
-            android:textColor="#000000"
-            android:ellipsize="end"
-            app:layout_constraintEnd_toStartOf="@+id/tv_preview1"
-            app:layout_constraintTop_toTopOf="@+id/img_read2" />
+            <ImageView
+                android:id="@+id/img_read2"
+                android:layout_width="141dp"
+                android:layout_height="274dp"
+                android:layout_marginTop="3dp"
+                android:src="@drawable/write_background"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
 
-        <TextView
-            android:id="@+id/tv_preview_con2"
-            android:layout_width="88dp"
-            android:layout_height="151dp"
-            android:layout_marginTop="15dp"
-            android:textColor="#000000"
-            android:textSize="12sp"
-            app:layout_constraintEnd_toEndOf="@+id/tv_preview2"
-            app:layout_constraintStart_toStartOf="@+id/tv_preview2"
-            app:layout_constraintTop_toBottomOf="@+id/tv_preview2" />
+            <TextView
+                android:id="@+id/tv_preview2"
+                android:layout_width="88dp"
+                android:layout_height="24dp"
+                android:layout_marginTop="55dp"
+                android:ellipsize="end"
+                android:textColor="#000000"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/img_read2" />
 
-        <ImageView
-            android:id="@+id/img_read3"
-            android:layout_width="140dp"
-            android:layout_height="267dp"
-            android:src="@drawable/write_background"
+            <TextView
+                android:id="@+id/tv_preview_con2"
+                android:layout_width="88dp"
+                android:layout_height="153dp"
+                android:layout_marginTop="26dp"
+                android:textColor="#000000"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="@+id/tv_preview2"
+                app:layout_constraintStart_toStartOf="@+id/tv_preview2"
+                app:layout_constraintTop_toBottomOf="@+id/tv_preview2" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/lo_preview3"
+            android:layout_width="145dp"
+            android:layout_height="277dp"
+            android:layout_marginEnd="27dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/img_read2"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintEnd_toStartOf="@+id/lo_preview2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/tv_preview3"
-            android:layout_width="87dp"
-            android:layout_height="24dp"
-            android:layout_marginTop="50dp"
-            android:layout_marginEnd="50dp"
-            android:textColor="#000000"
-            android:ellipsize="end"
-            app:layout_constraintEnd_toStartOf="@+id/tv_preview2"
-            app:layout_constraintTop_toTopOf="@+id/img_read3" />
+            <ImageView
+                android:id="@+id/img_read3"
+                android:layout_width="140dp"
+                android:layout_height="267dp"
+                android:src="@drawable/write_background"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/tv_preview_con3"
-            android:layout_width="90dp"
-            android:layout_height="153dp"
-            android:layout_marginTop="15dp"
-            android:textColor="#000000"
-            android:textSize="12sp"
-            app:layout_constraintEnd_toEndOf="@+id/tv_preview3"
-            app:layout_constraintStart_toStartOf="@+id/tv_preview3"
-            app:layout_constraintTop_toBottomOf="@+id/tv_preview3" />
+            <TextView
+                android:id="@+id/tv_preview3"
+                android:layout_width="87dp"
+                android:layout_height="24dp"
+                android:layout_marginTop="55dp"
+                android:ellipsize="end"
+                android:textColor="#000000"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_preview_con3"
+                android:layout_width="90dp"
+                android:layout_height="153dp"
+                android:layout_marginTop="26dp"
+                android:textColor="#000000"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="@+id/tv_preview3"
+                app:layout_constraintStart_toStartOf="@+id/tv_preview3"
+                app:layout_constraintTop_toBottomOf="@+id/tv_preview3" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -202,6 +238,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ImageView
@@ -211,6 +248,16 @@
         android:layout_marginTop="120dp"
         android:src="@drawable/letter_new"
         android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/divider4"
+        android:layout_width="391dp"
+        android:layout_height="1dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
