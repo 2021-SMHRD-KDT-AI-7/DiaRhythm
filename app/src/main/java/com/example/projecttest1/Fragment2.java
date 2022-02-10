@@ -14,8 +14,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.LineChart;
 //import com.github.mikephil.charting.components.Description;
@@ -50,6 +52,8 @@ public class Fragment2 extends Fragment {
     LineChart lineChart;
     String result;
     String result_rep;
+    ImageView img_wordCloud;
+
 
     String num1, num_1, num2, num_2, num3, num_3, num4, num_4, num5, num_5, num6, num_6, num7, num_7;
 
@@ -60,6 +64,7 @@ public class Fragment2 extends Fragment {
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_2, container, false);
         lineChart = v.findViewById(R.id.linechart);
+        img_wordCloud = v.findViewById(R.id.img_wordCloud);
 
         // DB에서 받아온 문자열 데이터를 필요한 규격에 맞게 슬라이싱
         try {
@@ -100,7 +105,7 @@ public class Fragment2 extends Fragment {
         }
 
         // 일주일 감정 문자열값을 emotions 배열에 넣고 포문으로 돌려 일치하는 값에 수치화
-        String emotions[] = {num_1, num_2, num_3, num_4, num_5, num_6, num_7};
+        String emotions[] = {num_5, num_3, num_6, num_2, num_4, num_1, num_7};
         ArrayList<Integer> y_date = new ArrayList<>();
 
         for (int i = 0; i <= 6; i++) {
@@ -185,7 +190,10 @@ public class Fragment2 extends Fragment {
         //description.setText(""); // 주석 미기입
         //lineChart.setDescription(description); // 주석 그리기
 
+        // wordCloud 가져오기
+        String wordCloud =  "http://121.147.52.142:5000/static/wc_img/diary_wc.png";
 
+        Glide.with(this).load(wordCloud).into(img_wordCloud);
 
         return v;
 

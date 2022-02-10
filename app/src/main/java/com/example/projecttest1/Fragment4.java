@@ -146,7 +146,7 @@ public class Fragment4 extends Fragment {
 
             // toString 을 " "(공백)을 기준으로 잘라 array 배열에 저장하기
             array2 = result2.split(" ");
-            
+
             int j = 0;
 
             // 날짜값만 arr_date 에 저장
@@ -257,21 +257,23 @@ public class Fragment4 extends Fragment {
 
                         // 불러올 일기가 1개라면? 1개만 표시
                         if(i <= 0){
-                            tv_previewDate1.setText(today1);
+                            tv_previewDate1.setText(year + "-" + month + "-" + day);
                             lo_preview1.setVisibility(View.VISIBLE);
                             lo_preview2.setVisibility(View.INVISIBLE);
                             lo_preview3.setVisibility(View.INVISIBLE);
 
                         // 불러올 일기가 2개라면? 2개만 표시
                         }else if(i <= 1){
-                            tv_previewDate2.setText(Integer.toString(Integer.parseInt(today1)-1));
+                            //tv_previewDate2.setText(Integer.toString(Integer.parseInt(today1)-1));
+                            tv_previewDate2.setText(year + "-" + month + "-" + (day-1));
                             lo_preview1.setVisibility(View.VISIBLE);
                             lo_preview2.setVisibility(View.VISIBLE);
                             lo_preview3.setVisibility(View.INVISIBLE);
 
                         // 불러올 일기가 3개라면? 3개 표시
                         }else if(i <= 2){
-                            tv_previewDate3.setText(Integer.toString(Integer.parseInt(today1)-2));
+                            //tv_previewDate3.setText(Integer.toString(Integer.parseInt(today1)-2));
+                            tv_previewDate3.setText(year + "-" + month + "-" + (day-2));
                             lo_preview1.setVisibility(View.VISIBLE);
                             lo_preview2.setVisibility(View.VISIBLE);
                             lo_preview3.setVisibility(View.VISIBLE);
@@ -312,7 +314,7 @@ public class Fragment4 extends Fragment {
                                 tv_read_title.setText(obj.getString("title"));
                                 tv_read_content.setText(obj.getString("content"));
 
-                                Log.v("데이값",Integer.toString(day));
+                                Log.v("데이값",year + "0" + month + "0" + day);
 
                             } catch (Exception e) {
 
