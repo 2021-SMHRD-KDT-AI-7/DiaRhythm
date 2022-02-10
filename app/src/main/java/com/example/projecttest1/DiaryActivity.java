@@ -180,7 +180,7 @@ public class DiaryActivity extends AppCompatActivity {
         //다이얼로그 텍스트 설정
         builder.setView(view);
         ((TextView)view.findViewById(R.id.textTitle)).setText("AI Comment");
-        ((TextView)view.findViewById(R.id.textMessage)).setText("눈물 닦아주고싶네요");
+        ((TextView)view.findViewById(R.id.textMessage)).setText("그동안 고생하셨어요");
         ((Button)view.findViewById(R.id.btnOk)).setText("확인");
 
         AlertDialog alertDialog = builder.create();
