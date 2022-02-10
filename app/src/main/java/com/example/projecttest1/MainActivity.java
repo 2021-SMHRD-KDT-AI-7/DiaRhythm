@@ -10,11 +10,15 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -127,9 +131,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+
                 Intent intent = new Intent(MainActivity.this, DiaryActivity.class);
                 intent.putExtra("string", id);
                 startActivity(intent);
+
+
+
 
             }
         });
@@ -181,5 +189,8 @@ public class MainActivity extends AppCompatActivity {
         img_write.setVisibility(View.VISIBLE);
     }
 
+
+
 }
+
 

@@ -57,6 +57,8 @@ public class DiaryActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+
+
                 //flask서버의 ip주소로 변경할 것
                 //뒤에 라우터 경로 작성할 것
                 String flask_url = "http://121.147.52.194:80/emotions";
@@ -71,6 +73,7 @@ public class DiaryActivity extends AppCompatActivity {
                                 //Flask서버의 return문에 작성한 결과값을 response변수를 통해서 접근
                                 Log.v("Flask응답값>> ", response);
                                 emotion = response;
+                                showCustomDialog();
 
                             }
 
@@ -87,20 +90,18 @@ public class DiaryActivity extends AppCompatActivity {
                         Map<String, String> params = new HashMap<>();
 
                         //flask서버로 전달할 데이터를
-                        params.put("num1", String.valueOf(et_title));
-                        params.put("num2", String.valueOf(et_content));
+                        params.put("num1", et_title.getText().toString());
+                        params.put("num2", et_content.getText().toString());
                         params.put("num3", id);
 
                         // params.put("num2","2");
 
                         return params;
+
                     }
                 };
 
                 queue.add(request);
-
-
-
 
                 if (et_title.getText().length() != 0 && et_content.getText().length() != 0) {
                     try {
@@ -112,18 +113,18 @@ public class DiaryActivity extends AppCompatActivity {
                         result = task.execute(title, content, id, emotion).get();
 
                         Log.v("return", result);
-                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                        intent.putExtra("string", id);
-                        startActivity(intent);
-                        finish();
 
-                        showCustomDialog();
-
+//
+//                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+//                        intent.putExtra("string", id);
+//                        startActivity(intent);
 
 
                     } catch (Exception e) {
 
                     }
+
+
 
                 } else if (et_title.getText().toString().length() == 0) {
                     Toast.makeText(getApplicationContext(), "제목을 입력해주세요", Toast.LENGTH_SHORT).show();
@@ -132,8 +133,23 @@ public class DiaryActivity extends AppCompatActivity {
 
                     Toast.makeText(getApplicationContext(), "내용을 입력해주세요", Toast.LENGTH_SHORT).show();
                 }
+
+
+
+
+
+
+
+
             }
+
+
+
+
+
         });
+
+
 
 
         // btn_cancel 메소드
@@ -149,6 +165,9 @@ public class DiaryActivity extends AppCompatActivity {
 
 
     }
+
+
+
 
     private void showCustomDialog(){
 
@@ -166,10 +185,14 @@ public class DiaryActivity extends AppCompatActivity {
 
         AlertDialog alertDialog = builder.create();
 
+
+
         view.findViewById(R.id.btnOk).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                alertDialog.dismiss();
+//                alertDialog.dismiss();
+
+                    finish();
             }
         });
 
@@ -180,7 +203,5 @@ public class DiaryActivity extends AppCompatActivity {
 
         alertDialog.show();
     }
-
-
 
 }
