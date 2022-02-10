@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 public class OptionCodeTypeDialog extends Dialog {
 
     private Context context;
+
     public OptionCodeTypeDialog(@NonNull Context context) {
         super(context);
         this.context = context;
@@ -17,6 +18,6 @@ public class OptionCodeTypeDialog extends Dialog {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.option_codetype_dialog);
+        //setContentView(R.layout.option_codetype_dialog);
     }
 }

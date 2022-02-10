@@ -144,19 +144,5 @@ public class DiaryActivity extends AppCompatActivity {
 
 
     }
-    // 얼트다이어로그 띄우기
-    void showDialog() {
-        AlertDialog.Builder msgBuilder = new AlertDialog.Builder(DiaryActivity.this)
-                .setTitle("AI 코멘트")
-                .setMessage("힘내세요 할 수 있어요.")
-                .setPositiveButton("확인", new DialogInterface.OnClickListener() {
-                    @Override public void onClick(DialogInterface dialogInterface, int i) {
-                        finish();
-                    } });
-        AlertDialog msgDlg = msgBuilder.create();
-        msgDlg.show();
 
-
-
-    }
 }
