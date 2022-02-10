@@ -5,11 +5,15 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -49,6 +53,7 @@ public class DiaryActivity extends AppCompatActivity {
         String id = extras.getString("string");
 
         btn_submit.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
 
@@ -112,7 +117,7 @@ public class DiaryActivity extends AppCompatActivity {
                         startActivity(intent);
                         finish();
 
-//                        showDialog();
+                        showCustomDialog();
 
 
 
@@ -144,19 +149,38 @@ public class DiaryActivity extends AppCompatActivity {
 
 
     }
-    // 얼트다이어로그 띄우기
-    void showDialog() {
-        AlertDialog.Builder msgBuilder = new AlertDialog.Builder(DiaryActivity.this)
-                .setTitle("AI 코멘트")
-                .setMessage("힘내세요 할 수 있어요.")
-                .setPositiveButton("확인", new DialogInterface.OnClickListener() {
-                    @Override public void onClick(DialogInterface dialogInterface, int i) {
-                        finish();
-                    } });
-        AlertDialog msgDlg = msgBuilder.create();
-        msgDlg.show();
 
+    private void showCustomDialog(){
 
+        AlertDialog.Builder builder = new AlertDialog.Builder(DiaryActivity.this
+                , R.style.AlertDialogTheme);
 
+        View view = LayoutInflater.from(DiaryActivity.this).inflate(
+                R.layout.dialog_custom, (LinearLayout)findViewById(R.id.layoutDialog));
+
+        //다이얼로그 텍스트 설정
+        builder.setView(view);
+        ((TextView)view.findViewById(R.id.textTitle)).setText("AI Comment");
+        ((TextView)view.findViewById(R.id.textMessage)).setText("잘해오고 있어요 당신에게 힘이 되기를!!");
+        ((Button)view.findViewById(R.id.btnOk)).setText("확인");
+
+        AlertDialog alertDialog = builder.create();
+
+        view.findViewById(R.id.btnOk).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                alertDialog.dismiss();
+            }
+        });
+
+        //다이얼로그 형태 지우기
+        if(alertDialog.getWindow() != null){
+            alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
+        }
+
+        alertDialog.show();
     }
+
+
+
 }
