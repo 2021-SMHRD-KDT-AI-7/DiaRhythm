@@ -27,11 +27,11 @@ public class RegisterMusicActivity extends AsyncTask<String, Void, String> {
             conn.setRequestMethod("POST");
             OutputStreamWriter osw = new OutputStreamWriter(conn.getOutputStream());
 
-            // 전송할 데이터. GET 방식으로 작성
-            //sendMsg = "id=" + strings[0];
+            //전송할 데이터. GET 방식으로 작성
+            sendMsg = "id=" + strings[0];
 
-            //osw.write(sendMsg);
-            //osw.flush();
+            osw.write(sendMsg);
+            osw.flush();
 
             //jsp 와 통신 성공 시 수행
             if (conn.getResponseCode() == conn.HTTP_OK) {

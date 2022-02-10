@@ -86,19 +86,24 @@ public class MainActivity extends AppCompatActivity {
                 if (item.getItemId() == R.id.tab1) {
                     getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment1).commit();
                     fragment1.setArguments(bundle);
+                    writeOn();
 
                 } else if (item.getItemId() == R.id.tab2) {
                     getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment2).commit();
 
                     fragment2.setArguments(bundle);
+                    writeOn();
 
                 } else if (item.getItemId() == R.id.tab3) {
                     getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment3).commit();
-
                     fragment3.setArguments(bundle);
+                    writeOn();
 
                 } else if (item.getItemId() == R.id.tab4) {
                     getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment4).commit();
+
+                    // 일기 읽기 페이지는 일기 쓰기 버튼 숨기기
+                    img_write.setVisibility(View.INVISIBLE);
 
                     fragment4.setArguments(bundle);
 
@@ -106,10 +111,14 @@ public class MainActivity extends AppCompatActivity {
                     getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment5).commit();
 
                     fragment5.setArguments(bundle);
+                    writeOn();
 
                 }
+
+
                 return true;
             }
+
         });
 
 
@@ -118,11 +127,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-
                 Intent intent = new Intent(MainActivity.this, DiaryActivity.class);
                 intent.putExtra("string", id);
                 startActivity(intent);
-
 
             }
         });
@@ -130,44 +137,49 @@ public class MainActivity extends AppCompatActivity {
 
        // int i = extras.getInt("integer");
     }
-    
 
 
 
 
-
-/*
-    //뒤로가기 눌렀을때 처리
-    // 뷰페이저2 동작하는 것과 상관 없으므로 (onBackPressed 메소드)생략 가능
-    @Override
-    public void onBackPressed() {
-        if(pager.getCurrentItem()==0){
-            Toast.makeText(this, "뒤로가기가 눌렸습니다.", Toast.LENGTH_SHORT).show();
-            super.onBackPressed();
-        }
-        else{
-            pager.setCurrentItem(pager.getCurrentItem()-1);
-        }
-    }
-    //페이저와 프래그먼트 이어주기
-    private class ScreeSlidePagerAdapter extends FragmentStateAdapter{
-        public ScreeSlidePagerAdapter(FragmentActivity fa){
-            super (fa);
-        }
-        @NonNull
+    /*
+        //뒤로가기 눌렀을때 처리
+        // 뷰페이저2 동작하는 것과 상관 없으므로 (onBackPressed 메소드)생략 가능
         @Override
-        public Fragment createFragment(int position) {//포지션마다 있을 fragment설정
-            if(position==0) return new Fragment1();
-            else if(position==1) return new Fragment2();
-            else if(position==2) return new Fragment3();
-            else if(position==3) return new Fragment4();
-            else return new Fragment5();
-        }
-        @Override
-        public int getItemCount() {
-            return num_pages; //페이지 수 지정.
+        public void onBackPressed() {
+            if(pager.getCurrentItem()==0){
+                Toast.makeText(this, "뒤로가기가 눌렸습니다.", Toast.LENGTH_SHORT).show();
+                super.onBackPressed();
             }
+            else{
+                pager.setCurrentItem(pager.getCurrentItem()-1);
+            }
+        }
+        //페이저와 프래그먼트 이어주기
+        private class ScreeSlidePagerAdapter extends FragmentStateAdapter{
+            public ScreeSlidePagerAdapter(FragmentActivity fa){
+                super (fa);
+            }
+            @NonNull
+            @Override
+            public Fragment createFragment(int position) {//포지션마다 있을 fragment설정
+                if(position==0) return new Fragment1();
+                else if(position==1) return new Fragment2();
+                else if(position==2) return new Fragment3();
+                else if(position==3) return new Fragment4();
+                else return new Fragment5();
+            }
+            @Override
+            public int getItemCount() {
+                return num_pages; //페이지 수 지정.
+                }
+        }
+
+    */
+    
+    // 일기 쓰기 보여주기 메소드
+    public void writeOn() {
+        img_write.setVisibility(View.VISIBLE);
     }
 
-*/
 }
+

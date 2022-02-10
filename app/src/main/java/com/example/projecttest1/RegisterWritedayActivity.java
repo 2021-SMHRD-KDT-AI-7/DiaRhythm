@@ -11,7 +11,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 
-public class RegisterPreviewActivity extends AsyncTask<String, Void, String> {
+public class RegisterWritedayActivity extends AsyncTask<String, Void, String> {
     String sendMsg, receiveMsg;
 
     @Override
@@ -20,7 +20,7 @@ public class RegisterPreviewActivity extends AsyncTask<String, Void, String> {
             String str;
 
             // 접속할 서버 주소 (이클립스에서 android.jsp 실행시 웹브라우저 주소)
-            URL url = new URL("http://211.228.61.227:8081/project/PreviewDB.jsp");
+            URL url = new URL("http://211.228.61.227:8081/project/WritedayDB.jsp");
 
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
@@ -32,8 +32,6 @@ public class RegisterPreviewActivity extends AsyncTask<String, Void, String> {
 
             osw.write(sendMsg);
             osw.flush();
-
-            /////////////////////////////Read////////////////////////////
 
             //jsp 와 통신 성공 시 수행
             if (conn.getResponseCode() == conn.HTTP_OK) {

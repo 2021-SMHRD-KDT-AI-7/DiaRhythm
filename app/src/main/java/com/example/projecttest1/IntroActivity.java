@@ -20,7 +20,7 @@ public class IntroActivity extends AppCompatActivity {
 
         img_loading = findViewById(R.id.img_loading);
         // gif 를 사용하기 위한 코드(gif 불러오기)
-        Glide.with(this).load(R.drawable.loading2).into(img_loading);
+        Glide.with(this).load(R.drawable.intro_lalalast).into(img_loading);
 
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
@@ -30,6 +30,6 @@ public class IntroActivity extends AppCompatActivity {
                 startActivity(intent);
                 finish();
             }
-        }, 2500);
+        }, 4050);
     }
 }
