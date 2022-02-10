@@ -37,6 +37,7 @@
         android:inputType="textMultiLine|textPersonName"
         android:paddingLeft="35dp"
         android:paddingTop="40dp"
+        android:paddingRight="20dp"
         android:scrollHorizontally="false"
         android:singleLine="true"
         android:textColor="#040303"
