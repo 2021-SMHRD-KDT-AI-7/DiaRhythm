@@ -50,7 +50,7 @@
         android:layout_marginTop="56dp"
         android:gravity="start|top"
         android:paddingLeft="10dp"
-        android:paddingTop="10dp"
+        android:paddingTop="20dp"
         android:paddingRight="10dp"
         android:scrollHorizontally="false"
         android:singleLine="false"
@@ -58,22 +58,22 @@
         android:textSize="17sp"
         app:layout_constraintBottom_toTopOf="@+id/egg"
         app:layout_constraintEnd_toStartOf="@+id/guideline7"
-        app:layout_constraintHorizontal_bias="0.487"
+        app:layout_constraintHorizontal_bias="0.482"
         app:layout_constraintStart_toStartOf="@+id/guideline6"
         app:layout_constraintTop_toBottomOf="@+id/tv_saying"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.006" />
 
     <TextView
         android:id="@+id/tv_saying_man"
-        android:layout_width="125dp"
-        android:layout_height="34dp"
-        android:layout_marginBottom="44dp"
+        android:layout_width="198dp"
+        android:layout_height="31dp"
+        android:layout_marginBottom="76dp"
         android:gravity="center"
         android:text="예시"
         android:textSize="15sp"
         app:layout_constraintBottom_toTopOf="@+id/textView2"
-        app:layout_constraintEnd_toStartOf="@+id/guideline7"
-        app:layout_constraintHorizontal_bias="0.926"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.825"
         app:layout_constraintStart_toStartOf="@+id/guideline6" />
 
     <TextView

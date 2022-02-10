@@ -191,7 +191,7 @@ public class Fragment2 extends Fragment {
         //lineChart.setDescription(description); // 주석 그리기
 
         // wordCloud 가져오기
-        String wordCloud =  "http://121.147.52.142:5000/static/wc_img/diary_wc.png";
+        String wordCloud =  "http://121.147.52.142:5000/static/wc_img/diary_wc02.png";
 
         Glide.with(this).load(wordCloud).into(img_wordCloud);
 
